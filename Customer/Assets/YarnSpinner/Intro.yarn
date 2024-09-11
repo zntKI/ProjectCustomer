@@ -1,0 +1,25 @@
+﻿title: Intro
+tags:
+position: 22,-150
+---
+<<declare $destination = "Sofia">>
+Driver: Good evening!
+    -> Hello, can you take me to {$destination}?
+        Driver: Sure, get in!
+            -> Get in
+                <<jump Car>>
+            -> Decline
+                <<jump Refusal>>
+===
+
+title: Car
+position: -173,73
+---
+Driver: Let's go...
+===
+
+title: Refusal
+position: 139,102
+---
+Driver: Good night...
+===
