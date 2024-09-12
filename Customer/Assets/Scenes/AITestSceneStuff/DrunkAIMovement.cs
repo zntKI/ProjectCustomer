@@ -11,6 +11,8 @@ public class DrunkAIMovement : MonoBehaviour
     float targetMoveSpeed = 75f;
     [SerializeField]
     float moveSpeedIncreaseAmount = 5f;
+    [SerializeField]
+    float moveSpeedWhenDecelerating = 45f;
 
     [Header("Swerving")]
     [SerializeField]
@@ -41,6 +43,8 @@ public class DrunkAIMovement : MonoBehaviour
     {
         state = MovementState.Start;
         rb = GetComponent<Rigidbody>();
+
+        TrafficLightController.OnSignalChangeBackToGreen += StartMovingAgain;
     }
 
     void Start()
@@ -111,6 +115,21 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.Normal:
                 HandleWaypointFollowing();
+
+                // Implement traffic light
+                var trafficLights = GameObject.FindGameObjectsWithTag("Finish");
+                var trafficLightInRange = trafficLights.FirstOrDefault(t => Vector3.Magnitude(transform.position - t.transform.position) < t.GetComponent<TrafficLightController>().Range);
+                if (trafficLightInRange != null)
+                {
+                    SetState(MovementState.TrafficLight);
+                    trafficLightInRange.GetComponent<TrafficLightController>().ChangeSignal(TrafficLightSignal.Red);
+                }
+                break;
+            case MovementState.TrafficLight:
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    moveSpeed = 0f;
+                }
                 break;
             default:
                 break;
@@ -152,6 +171,7 @@ public class DrunkAIMovement : MonoBehaviour
     void HandlePlayerInput()
     {
         swerveInputValue = Input.GetAxisRaw("Horizontal");
+
     }
 
     void SetState(MovementState stateToChangeTo)
@@ -165,6 +185,9 @@ public class DrunkAIMovement : MonoBehaviour
                 rotationWhenStartedSwerving = transform.rotation.y;
                 currentSwerveMultipier = Random.Range(swerveMultiplierMin, swerveMultiplierMax);
                 break;
+            case MovementState.TrafficLight:
+                moveSpeed = moveSpeedWhenDecelerating;
+                break;
             case MovementState.PassengerControl:
                 break;
             case MovementState.Accelerating:
@@ -172,6 +195,16 @@ public class DrunkAIMovement : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void StartMovingAgain()
+    {
+        SetState(MovementState.Start);
+    }
+
+    void OnDestroy()
+    {
+        TrafficLightController.OnSignalChangeBackToGreen -= StartMovingAgain;
     }
 }
 
@@ -182,5 +215,6 @@ public enum MovementState
     Normal,
     PassengerControl,
     Swerving,
-    Accelerating
+    Accelerating,
+    TrafficLight
 }
