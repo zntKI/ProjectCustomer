@@ -6,6 +6,8 @@ using Yarn.Unity;
 public class DialogueTrigger : MonoBehaviour
 {
     public DialogueRunner dialogueRunner;
+    public DialogueOption dialogue;
+    public OptionView optionView;
 
     void Update()
     {
