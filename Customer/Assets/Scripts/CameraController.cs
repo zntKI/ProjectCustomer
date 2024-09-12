@@ -5,12 +5,14 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] private float minAngle = 0f;
-    [SerializeField] private float maxAngle = 30f;
+    [SerializeField] private float minVertAngle = 0f;
+    [SerializeField] private float maxVertAngle = 30f;
+    [SerializeField] private float minHorAngle = 20f;
+    [SerializeField] private float maxHorAngle = 310f;
 
     private void Start()
     {
-        //Cursor.visible = false;
+        Cursor.visible = false;
     }
 
     void FixedUpdate()
@@ -21,11 +23,33 @@ public class CameraController : MonoBehaviour
         float horizontalRotation = horizontalInput * rotationSpeed * Time.deltaTime;
         float verticalRotation = -verticalInput * rotationSpeed * Time.deltaTime;
 
+        float oldVertRotation = transform.rotation.eulerAngles.x;
+        float newVertRotation = oldVertRotation + verticalRotation;
+
         // clamp vertical rotation
-        float oldRotation = transform.rotation.eulerAngles.x;
-        float newRotation = oldRotation + verticalRotation;
-        newRotation = Mathf.Clamp(newRotation, minAngle, maxAngle);
-        verticalRotation = newRotation - oldRotation;
+        newVertRotation = Mathf.Clamp(newVertRotation, minVertAngle, maxVertAngle);
+        verticalRotation = newVertRotation - oldVertRotation;
+        
+        float oldHorRotation = transform.rotation.eulerAngles.y;
+        float newHorRotation = oldHorRotation + horizontalRotation;
+
+        // clamp horizontal rotation
+        // clamp between 310-360 or 0-50
+        if (newHorRotation > minHorAngle && newHorRotation < maxHorAngle)
+        {
+            // if the new rotation is outside of both ranges, choose the closest limit
+            if (oldHorRotation <= minHorAngle)
+            {
+                newHorRotation = minHorAngle - 0.1f;  // Stay within the lower range
+            }
+            else if (oldHorRotation >= maxHorAngle)
+            {
+                newHorRotation = maxHorAngle + 0.1f;  // Stay within the upper range
+            }
+        }
+        
+        horizontalRotation = newHorRotation - oldHorRotation;
+
 
         transform.Rotate(Vector3.up, horizontalRotation, Space.World);
         transform.Rotate(Vector3.right, verticalRotation);
