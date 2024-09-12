@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DrunkAIMovement : MonoBehaviour
@@ -30,10 +32,20 @@ public class DrunkAIMovement : MonoBehaviour
     float currentSwerveMultipier;
     float rotationWhenStartedSwerving;
 
+    List<GameObject> waypoints;
+
+    GameObject currentWaypointToFollow;
+    DebugDrawCircleRange currentWaypointToFollowData;
+
     private void Awake()
     {
         state = MovementState.Start;
         rb = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
+        waypoints = GameObject.FindGameObjectsWithTag("GameController").OrderBy(w => w.GetComponent<DebugDrawCircleRange>().Id).ToList();
     }
 
     void Update()
@@ -81,6 +93,8 @@ public class DrunkAIMovement : MonoBehaviour
         switch (state)
         {
             case MovementState.Start:
+                HandleWaypointFollowing();
+
                 moveSpeed += moveSpeedIncreaseAmount * Time.deltaTime;
                 if (moveSpeed >= targetMoveSpeed)
                 {
@@ -92,10 +106,46 @@ public class DrunkAIMovement : MonoBehaviour
                 HandlePlayerInput();
                 break;
             case MovementState.PassengerControl:
-                HandlePlayerInput(); //TODO: until you reach a waypoint!!!
+                HandlePlayerInput();
+                CheckIfReachedWaypoint();
+                break;
+            case MovementState.Normal:
+                HandleWaypointFollowing();
                 break;
             default:
                 break;
+        }
+    }
+
+    void CheckIfReachedWaypoint()
+    {
+        var possibleWaypoint = waypoints.FirstOrDefault(w => Vector3.Magnitude(transform.position - w.transform.position) < w.GetComponent<DebugDrawCircleRange>().Radius);
+        if (possibleWaypoint != null)
+        {
+            currentWaypointToFollow = possibleWaypoint;
+            currentWaypointToFollowData = possibleWaypoint.GetComponent<DebugDrawCircleRange>();
+            waypoints.RemoveRange(0, waypoints.IndexOf(currentWaypointToFollow));
+
+            SetState(MovementState.Normal);
+        }
+    }
+
+    void HandleWaypointFollowing()
+    {
+        if (currentWaypointToFollow == null)
+        {
+            //Pick the first waypoint
+            currentWaypointToFollow = waypoints[0];
+            currentWaypointToFollowData = currentWaypointToFollow.GetComponent<DebugDrawCircleRange>();
+            waypoints.RemoveAt(0);
+        }
+        transform.LookAt(currentWaypointToFollow.transform);
+
+        if (Vector3.Magnitude(transform.position - currentWaypointToFollow.transform.position) < currentWaypointToFollowData.Radius)
+        {
+            currentWaypointToFollow = waypoints[0];
+            currentWaypointToFollowData = currentWaypointToFollow.GetComponent<DebugDrawCircleRange>();
+            waypoints.RemoveAt(0);
         }
     }
 
@@ -129,6 +179,7 @@ public class DrunkAIMovement : MonoBehaviour
 public enum MovementState
 {
     Start,
+    Normal,
     PassengerControl,
     Swerving,
     Accelerating
