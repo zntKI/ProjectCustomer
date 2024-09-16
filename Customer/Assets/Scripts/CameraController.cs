@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Transform car;
+
     [SerializeField] private float rotationSpeed = 100f;
     [SerializeField] private float minVertAngle = 0f;
     [SerializeField] private float maxVertAngle = 30f;
@@ -13,6 +16,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void FixedUpdate()
@@ -49,7 +53,6 @@ public class CameraController : MonoBehaviour
         }
         
         horizontalRotation = newHorRotation - oldHorRotation;
-
 
         transform.Rotate(Vector3.up, horizontalRotation, Space.World);
         transform.Rotate(Vector3.right, verticalRotation);

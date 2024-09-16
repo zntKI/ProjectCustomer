@@ -33,8 +33,8 @@ public class DialogueOptionsManager : DialogueViewBase
 
             //set collider size
             float optionWidth = rectTransform.rect.width;
-            collider.size = new Vector3(optionWidth, 30, 1);
-            collider.center = new Vector3(optionWidth / 2 - 200, 0, 0);
+            collider.size = new Vector3(optionWidth, collider.size.y, collider.size.z);
+            collider.center = new Vector3(optionWidth / 2 - 500, 0, 0);
             
             // Add an event listener to handle button clicks
             int optionIndex = option.DialogueOptionID;

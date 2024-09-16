@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class RaycastDialogueSelector : MonoBehaviour
 {
-    Camera playerCamera;               // The camera from which the ray will be cast
-    public float raycastDistance = 100f;      // Max raycast distance
-    public Color highlightColor = Color.yellow;  // Highlight color for selected buttons
+    Camera playerCamera;
+    public float raycastDistance = 100f;
     public LayerMask interactableLayer;       // Layer for raycastable dialogue options
 
     private Button highlightedButton = null;
-    private Color originalColor;
+    private Color originalColor; //
+
+    private RaycastHit[] hitResult = new RaycastHit[1];
 
     private void Start()
     {
@@ -20,15 +21,16 @@ public class RaycastDialogueSelector : MonoBehaviour
     void Update()
     {
         Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-        RaycastHit hit;
 
         Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.green);
 
-        // Perform the raycast
-        if (Physics.Raycast(ray, out hit, raycastDistance, interactableLayer))
-        {
+        int hitCount = Physics.RaycastNonAlloc(ray, hitResult, raycastDistance, interactableLayer);
+
+        if (hitCount > 0) {
+
+            RaycastHit hit = hitResult[0];
+
             Button button = hit.transform.GetComponent<Button>();
-            
 
             if (button != null)
             {
@@ -57,7 +59,6 @@ public class RaycastDialogueSelector : MonoBehaviour
             // Save the original color and apply the highlight
             var colors = button.colors;
             originalColor = colors.normalColor;
-            colors.normalColor = highlightColor;
             
             button.colors = colors;
             TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
