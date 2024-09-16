@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class DrunkAIMovement : MonoBehaviour
@@ -11,6 +12,18 @@ public class DrunkAIMovement : MonoBehaviour
     float targetMoveSpeed = 75f;
     [SerializeField]
     float moveSpeedIncreaseAmount = 5f;
+
+    [Header("Accelerating")]
+    [SerializeField]
+    float speedMaxWhenAccelerating = 120;
+    [SerializeField]
+    float speedAcceleratingIncreaseAmount = 10f;
+    [SerializeField]
+    float timeForReactionSecAccelerating = 4f;
+    [SerializeField]
+    float speedAcceleratingDecreaseAmount = 15f;
+
+    [Header("Stop light")]
     [SerializeField]
     float moveSpeedWhenDecelerating = 45f;
 
@@ -25,19 +38,24 @@ public class DrunkAIMovement : MonoBehaviour
     float playerTurnAmount = 2f;
 
     MovementState state;
-
     Rigidbody rb;
 
+    //Current move speed
     float moveSpeed;
 
-    float swerveInputValue;
-    float currentSwerveMultipier;
-    float rotationWhenStartedSwerving;
-
+    //Waypoints vars
     List<GameObject> waypoints;
 
     GameObject currentWaypointToFollow;
     DebugDrawCircleRange currentWaypointToFollowData;
+
+    //Acceleration vars
+    float timeForReactionSecAcceleratingCounter = 0f;
+
+    //Swerve vars
+    float swerveInputValue;
+    float currentSwerveMultipier;
+    float rotationWhenStartedSwerving;
 
     private void Awake()
     {
@@ -54,6 +72,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"{state}");
         HandleState();
     }
 
@@ -103,8 +122,44 @@ public class DrunkAIMovement : MonoBehaviour
                 if (moveSpeed >= targetMoveSpeed)
                 {
                     moveSpeed = targetMoveSpeed;
-                    SetState(MovementState.Swerving/*(MovementState)Random.Range(2, 4)*/);
+                    SetState(MovementState.Accelerating);
                 }
+                break;
+            case MovementState.Accelerating:
+                HandleWaypointFollowing();
+
+                moveSpeed += speedAcceleratingIncreaseAmount * Time.deltaTime;
+                moveSpeed = Mathf.Clamp(moveSpeed, targetMoveSpeed, speedMaxWhenAccelerating);
+
+                if (moveSpeed >= speedMaxWhenAccelerating)
+                {
+                    Debug.Log($"Reached speed of: {moveSpeed} and started counting for reaction: {timeForReactionSecAcceleratingCounter} secs");
+                    timeForReactionSecAcceleratingCounter += Time.deltaTime;
+                    if (timeForReactionSecAcceleratingCounter >= timeForReactionSecAccelerating)
+                    {
+                        EditorApplication.isPlaying = false;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        state = MovementState.DecceleratingAfterAccelerating;
+
+                        timeForReactionSecAcceleratingCounter = 0;
+                    }
+                }
+                break;
+            case MovementState.DecceleratingAfterAccelerating:
+                HandleWaypointFollowing();
+
+                moveSpeed -= speedAcceleratingDecreaseAmount * Time.deltaTime;
+                moveSpeed = Mathf.Clamp(moveSpeed, targetMoveSpeed, speedMaxWhenAccelerating);
+
+                Debug.Log($"Started deccelerating with current speed of: {moveSpeed}");
+
+                if (moveSpeed <= targetMoveSpeed)
+                {
+                    EditorApplication.isPlaying = false;
+                }
+
                 break;
             case MovementState.Swerving:
                 HandlePlayerInput();
@@ -171,7 +226,6 @@ public class DrunkAIMovement : MonoBehaviour
     void HandlePlayerInput()
     {
         swerveInputValue = Input.GetAxisRaw("Horizontal");
-
     }
 
     void SetState(MovementState stateToChangeTo)
@@ -212,9 +266,10 @@ public class DrunkAIMovement : MonoBehaviour
 public enum MovementState
 {
     Start,
+    Accelerating,
+    DecceleratingAfterAccelerating,
     Normal,
     PassengerControl,
     Swerving,
-    Accelerating,
     TrafficLight
 }
