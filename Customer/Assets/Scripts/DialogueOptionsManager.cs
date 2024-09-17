@@ -6,17 +6,30 @@ using Yarn.Unity;
 
 public class DialogueOptionsManager : DialogueViewBase
 {
+    public static DialogueOptionsManager instance;
+
     [SerializeField] GameObject optionsContainer;
+    [SerializeField] GameObject lastLine;
     [SerializeField] GameObject buttonPrefab;
 
     private List<GameObject> instantiatedButtons = new List<GameObject>();
 
-    // Called when Yarn Spinner has dialogue options to present
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
+    // Called when Yarn Spinner has dialogue options to present
     public override void RunOptions(DialogueOption[] dialogueOptions, System.Action<int> onOptionSelected)
     {
         // Clear any previous buttons
         ClearOptions();
+
+        // Display the last line said
+        lastLine.SetActive(true);
 
         // Create a button for each dialogue option
         foreach (var option in dialogueOptions)
@@ -33,13 +46,14 @@ public class DialogueOptionsManager : DialogueViewBase
             //set collider size
             float optionWidth = rectTransform.rect.width;
             collider.size = new Vector3(optionWidth, collider.size.y, collider.size.z);
-            collider.center = new Vector3(optionWidth / 2 - 500, 0, 0);
+            collider.center = new Vector3(optionWidth / 2 - 200, 0, 0);
             
             // Add an event listener to handle button clicks
             int optionIndex = option.DialogueOptionID;
             buttonComponent.onClick.AddListener(() => {
                 onOptionSelected(optionIndex); // Call the callback to select the option
                 ClearOptions();                // Clear the options once one is selected
+                lastLine.SetActive(false);     // Clear the last line said
             });
 
             instantiatedButtons.Add(newButton);
