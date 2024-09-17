@@ -79,34 +79,34 @@ public class DrunkAIMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        switch (state)
-        {
-            case MovementState.Swerving:
+        //switch (state)
+        //{
+        //    case MovementState.Swerving:
 
-                float swerveRotationAmount = swerveRotationDefaultAmount * currentSwerveMultipier; //swerve force
-                float playerRotationAmount = Mathf.Abs(swerveRotationAmount) * 2 * swerveInputValue; //player force
-                float rotationAmount = swerveRotationAmount + playerRotationAmount; //end force amount depending on input
+        //        float swerveRotationAmount = swerveRotationDefaultAmount * currentSwerveMultipier; //swerve force
+        //        float playerRotationAmount = Mathf.Abs(swerveRotationAmount) * 2 * swerveInputValue; //player force
+        //        float rotationAmount = swerveRotationAmount + playerRotationAmount; //end force amount depending on input
                 
-                transform.Rotate(0f, rotationAmount, 0f);
+        //        transform.Rotate(0f, rotationAmount, 0f);
 
-                bool hasCarReturnedToStartingRotation = currentSwerveMultipier < 0 ? transform.rotation.y > rotationWhenStartedSwerving
-                    : transform.rotation.y < rotationWhenStartedSwerving;
-                if (hasCarReturnedToStartingRotation)
-                {
-                    SetState(MovementState.PassengerControl);
-                }
+        //        bool hasCarReturnedToStartingRotation = currentSwerveMultipier < 0 ? transform.rotation.y > rotationWhenStartedSwerving
+        //            : transform.rotation.y < rotationWhenStartedSwerving;
+        //        if (hasCarReturnedToStartingRotation)
+        //        {
+        //            SetState(MovementState.PassengerControl);
+        //        }
 
-                break;
-            case MovementState.PassengerControl:
+        //        break;
+        //    case MovementState.PassengerControl:
 
-                transform.Rotate(0f, swerveInputValue * playerTurnAmount, 0f);
+        //        transform.Rotate(0f, swerveInputValue * playerTurnAmount, 0f);
 
-                break;
-            case MovementState.Accelerating:
-                break;
-            default:
-                break;
-        }
+        //        break;
+        //    case MovementState.Accelerating:
+        //        break;
+        //    default:
+        //        break;
+        //}
 
         rb.velocity = transform.forward * moveSpeed;
     }
@@ -228,7 +228,7 @@ public class DrunkAIMovement : MonoBehaviour
         swerveInputValue = Input.GetAxisRaw("Horizontal");
     }
 
-    void SetState(MovementState stateToChangeTo)
+    public void SetState(MovementState stateToChangeTo)
     {
         state = stateToChangeTo;
         switch (state)
