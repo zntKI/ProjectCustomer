@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Yarn.Unity;
 
 public class DrunkAIMovement : MonoBehaviour
 {
@@ -59,7 +60,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     private void Awake()
     {
-        state = MovementState.Start;
+        state = MovementState.Normal;
         rb = GetComponent<Rigidbody>();
 
         TrafficLightController.OnSignalChangeBackToGreen += StartMovingAgain;
@@ -86,7 +87,7 @@ public class DrunkAIMovement : MonoBehaviour
         //        float swerveRotationAmount = swerveRotationDefaultAmount * currentSwerveMultipier; //swerve force
         //        float playerRotationAmount = Mathf.Abs(swerveRotationAmount) * 2 * swerveInputValue; //player force
         //        float rotationAmount = swerveRotationAmount + playerRotationAmount; //end force amount depending on input
-                
+
         //        transform.Rotate(0f, rotationAmount, 0f);
 
         //        bool hasCarReturnedToStartingRotation = currentSwerveMultipier < 0 ? transform.rotation.y > rotationWhenStartedSwerving
@@ -108,6 +109,7 @@ public class DrunkAIMovement : MonoBehaviour
         //        break;
         //}
 
+        //DialogueManager.instance.StartDialogue("TutorialEnd");
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -228,7 +230,31 @@ public class DrunkAIMovement : MonoBehaviour
         swerveInputValue = Input.GetAxisRaw("Horizontal");
     }
 
-    public void SetState(MovementState stateToChangeTo)
+    [YarnCommand("setState")]
+    public void SetState(int stateToChangeTo)
+    {
+        state = (MovementState)stateToChangeTo;
+        switch (state)
+        {
+            case MovementState.Start:
+                break;
+            case MovementState.Swerving:
+                rotationWhenStartedSwerving = transform.rotation.y;
+                currentSwerveMultipier = Random.Range(swerveMultiplierMin, swerveMultiplierMax);
+                break;
+            case MovementState.TrafficLight:
+                moveSpeed = moveSpeedWhenDecelerating;
+                break;
+            case MovementState.PassengerControl:
+                break;
+            case MovementState.Accelerating:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void SetState(MovementState stateToChangeTo)
     {
         state = stateToChangeTo;
         switch (state)
@@ -250,7 +276,6 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
     }
-
     void StartMovingAgain()
     {
         SetState(MovementState.Start);

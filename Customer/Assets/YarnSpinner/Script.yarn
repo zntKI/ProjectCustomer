@@ -1,0 +1,36 @@
+﻿title: Intro
+tags:
+position: 22,-150
+---
+<<declare $destination = "Sofia">>
+<<declare $testVar = 12>>
+Friend: Hey, hop in.
+Appreciate it, man. Thanks for coming.
+Friend: No worries, man. Let's get out of here.
+        -> Get in
+            <<jump Tutorial>>
+            <<setState Car 0>>
+===
+
+title: Tutorial
+position: -173,73
+---
+Friend: How was the party?
+It was great. Had a couple too many beers though.
+Uh, you kinda blew past that stop sign back there.
+Friend: Oh, I didn't even notice. Must be zoned out from the night.
+Zoned out? You don't look great, man. Tired or something?
+Friend: Yeah, just tired. Don't worry about it.
+///Car swerves and returns 
+Uh, you're kinda swerving a bit.
+Friend: I got it! I got it. Just gotta... focus. No worries.
+<<setState Car 5>>
+===
+
+title: TutorialEnd
+position: 139,102
+---
+That didn't feel like just being tired. You sure you're okay?
+Friend: "I told you, man, I'm fine! It's nothing serious.
+
+===
