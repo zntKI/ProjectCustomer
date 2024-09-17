@@ -2066,6 +2066,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMoveSpeed: 30
   moveSpeedIncreaseAmount: 10
+  speedMaxWhenAccelerating: 120
+  speedAcceleratingIncreaseAmount: 10
+  timeForReactionSecAccelerating: 4
+  speedAcceleratingDecreaseAmount: 15
   moveSpeedWhenDecelerating: 10
   swerveMultiplierMin: -5
   swerveMultiplierMax: 5
