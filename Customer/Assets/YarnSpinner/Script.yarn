@@ -3,8 +3,10 @@ tags:
 position: 22,-150
 ---
 <<declare $destination = "Sofia">>
+<<declare $testVar = 12>>
 Driver: Good evening!
     -> Hello, can you take me to {$destination}?
+    <<testFunction>>
         Driver: Sure, get in!
             -> Get in
                 <<jump Car>>

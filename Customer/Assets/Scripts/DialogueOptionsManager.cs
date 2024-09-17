@@ -24,11 +24,10 @@ public class DialogueOptionsManager : DialogueViewBase
             GameObject newButton = Instantiate(buttonPrefab, optionsContainer.transform);
             Button buttonComponent = newButton.GetComponent<Button>();
             TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
-            newButton.layer = LayerMask.NameToLayer("DialogueOptionsLayer");
             BoxCollider collider = newButton.GetComponent<BoxCollider>();
             RectTransform rectTransform = optionsContainer.GetComponentInChildren<RectTransform>();
 
-            // Set the text to the dialogue option's text
+            // Set the button text to the dialogue option's text
             buttonText.text = " ->     " + option.Line.Text.Text;
 
             //set collider size
