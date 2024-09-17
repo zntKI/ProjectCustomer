@@ -8,8 +8,8 @@ Friend: Hey, hop in.
 Appreciate it, man. Thanks for coming.
 Friend: No worries, man. Let's get out of here.
         -> Get in
-            <<jump Tutorial>>
             <<setState Car 0>> //Start car
+            <<jump Tutorial>>
 ===
 
 title: Tutorial
