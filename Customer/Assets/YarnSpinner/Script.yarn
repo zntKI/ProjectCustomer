@@ -2,19 +2,26 @@
 tags:
 position: 22,-150
 ---
-Friend: Hey, hop in.
-        -> Appreciate it, man. Thanks for coming.
-Friend: No worries, man. Let's get out of here.
+Friend: Hey, sorry for being late. Hop in.
+        -> No worries, man. Thanks for coming.
+Friend: Let's get out of here.
         -> Get in
             <<setState Car 0>> //Start car
             <<jump Tutorial>>
 ===
 
-title: Tutorial
+title: TutorialSetup
 position: -173,73
 ---
 Friend: How was the party?
-You: It was great. Had a couple too many beers though.
+You: It was great. Had a couple too many beers so I'm glad you came to pick me up.
+Friend: Don't worry about it.
+<<jump TutorialStart>>
+===
+
+title: TutorialStart
+position: -173,73
+---
 You: Uh, you kinda blew past that stop sign back there.
 Friend: Oh, I didn't even notice. Must be zoned out from the night.
 You: Zoned out? You don't look great, man. Tired or something?
@@ -26,6 +33,14 @@ Friend: I got it! I got it. Just gotta... focus. No worries.
 ===
 
 title: TutorialEnd
+position: 139,102
+---
+You: That didn't feel like just being tired. Are you sure you're okay?
+Friend: "I told you, man, I'm fine! It's nothing serious.
+<<jump Speeding>>
+===
+
+title: Speeding
 position: 139,102
 ---
 You: That didn't feel like just being tired. You sure you're okay?
