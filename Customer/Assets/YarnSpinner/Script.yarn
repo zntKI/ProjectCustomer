@@ -9,7 +9,7 @@ Appreciate it, man. Thanks for coming.
 Friend: No worries, man. Let's get out of here.
         -> Get in
             <<jump Tutorial>>
-            <<setState Car 0>>
+            <<setState Car 0>> //Start car
 ===
 
 title: Tutorial
@@ -24,7 +24,7 @@ Friend: Yeah, just tired. Don't worry about it.
 ///Car swerves and returns 
 Uh, you're kinda swerving a bit.
 Friend: I got it! I got it. Just gotta... focus. No worries.
-<<setState Car 5>>
+///<<setState Car 5>> //Start car swerving
 ===
 
 title: TutorialEnd
