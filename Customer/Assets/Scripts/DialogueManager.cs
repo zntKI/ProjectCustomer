@@ -5,29 +5,33 @@ using Yarn.Unity;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager instance;
+
     [SerializeField] DialogueRunner dialogueRunner;
     VariableStorageBehaviour variableStorageBehaviour;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
         variableStorageBehaviour = GameObject.FindObjectOfType<InMemoryVariableStorage>();
-        
     }
 
     void Update()
     {
-        /*float testVar;
-        variableStorageBehaviour.TryGetValue("$testVar", out testVar);
-        variableStorageBehaviour.SetValue("$testVar", testVar + 1);
-        Debug.Log(testVar);*/
         if (Input.GetKeyDown(KeyCode.E)) {
             dialogueRunner.StartDialogue("Intro");
         }
     }
 
-    [YarnCommand("testFunction")]
-    public static void TestFunction()
+    public void StartDialogue(string startNode)
     {
-        Debug.Log("test function working");
+        dialogueRunner.StartDialogue(startNode);
     }
 }
