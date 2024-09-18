@@ -35,7 +35,7 @@ position: -404,45
 ---
 You: Uh, you're kinda swerving a bit.
 Friend: I got it! I got it. Just gotta... focus. No worries.
-<<setState Car 10>> //Start car swerving
+<<setState Car 5>> //Start car swerving
 ===
 
 title: TutorialEnd
