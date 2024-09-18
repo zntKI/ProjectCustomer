@@ -157,7 +157,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        float playerRotationAmount = isTryingToCorrectSwerve ? Mathf.Abs(swerveRotationAmount) * playerTurnAmount : 0; //player force
+        float playerRotationAmount = swerveCorrectionInputValue == 1 ? Mathf.Abs(swerveRotationAmount) * playerTurnAmount : 0; //player force
         float rotationAmount = swerveRotationAmount + playerRotationAmount; //end force amount depending on input
 
         transform.Rotate(0f, rotationAmount, 0f);
@@ -324,7 +324,6 @@ public class DrunkAIMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        isTryingToCorrectSwerve = Input.GetKeyDown(KeyCode.D);
         swerveCorrectionInputValue = Input.GetKey(KeyCode.D) ? 1 : 0;
     }
 
@@ -349,7 +348,7 @@ public class DrunkAIMovement : MonoBehaviour
                 rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TutorialManualSwerve:
-                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+                rotationWhenStartedSwerving = transform.rotation.y;
                 break;
             case MovementState.Swerving:
                 rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;

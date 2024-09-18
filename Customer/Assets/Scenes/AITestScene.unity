@@ -461,7 +461,7 @@ MonoBehaviour:
   swerveRotationDefaultAmount: 0.1
   tutorialAutoSwerveMultiplier: -1
   tutorialAutoSwerveRotationAmount: 20
-  tutorialAutoSwerveCorrectionMultiplier: -1.1
+  tutorialAutoSwerveCorrectionMultiplier: 1.1
   tutorialManualSwerveMultiplier: -1.5
   normalSwerveMultiplier: -2
   playerTurnAmount: 2
