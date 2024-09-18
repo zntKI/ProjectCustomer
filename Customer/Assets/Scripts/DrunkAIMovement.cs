@@ -66,7 +66,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     private void Awake()
     {
-        SetState(MovementState.TutorialAutoSwerve);
+        SetState(MovementState.BeforeTakingOff);
         rb = GetComponent<Rigidbody>();
 
         TrafficLightController.OnSignalChangeBackToGreen += StartMovingAgain;
