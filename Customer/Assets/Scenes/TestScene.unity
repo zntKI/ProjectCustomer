@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 672
+      value: 348
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1540,7 +1540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 632
+      value: 318
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2414,7 +2414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 347
+      value: 263
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2553,7 +2553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 269
+      value: 238
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2740,7 +2740,7 @@ MonoBehaviour:
   swerveRotationDefaultAmount: 0.1
   tutorialAutoSwerveMultiplier: -1
   tutorialAutoSwerveRotationAmount: 20
-  tutorialAutoSwerveCorrectionMultiplier: -1.1
+  tutorialAutoSwerveCorrectionMultiplier: 1.1
   tutorialManualSwerveMultiplier: -1.5
   normalSwerveMultiplier: -2
   playerTurnAmount: 2
@@ -2921,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 478
+      value: 289
       objectReference: {fileID: 0}
     - target: {fileID: 2634375111727371185, guid: 1ddac6c839633444680e2d0332bf02f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3261,6 +3261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad2b372e6f93434783f0e0107ce665d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 1276317974}
   optionsContainer: {fileID: 901859727}
   lastLine: {fileID: 2045579391}
   buttonPrefab: {fileID: 1347894530585652524, guid: e2acf4af75b2ef248a47a7abf75fd589, type: 3}
