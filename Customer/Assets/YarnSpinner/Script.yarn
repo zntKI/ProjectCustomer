@@ -1,17 +1,17 @@
 ﻿title: Intro
 tags:
-position: 22,-150
+position: 81,-384
 ---
 Friend: Hey, sorry for being late. Hop in.
         -> No worries, man. Thanks for coming.
 Friend: Let's get out of here.
         -> Get in
             <<setState Car 0>> //Start car
-            <<jump Tutorial>>
+            <<jump TutorialSetup>>
 ===
 
 title: TutorialSetup
-position: -173,73
+position: -403,-143
 ---
 Friend: How was the party?
 You: It was great. Had a couple too many beers so I'm glad you came to pick me up.
@@ -20,7 +20,7 @@ Friend: Don't worry about it.
 ===
 
 title: TutorialStart
-position: -173,73
+position: -404,45
 ---
 You: Uh, you kinda blew past that stop sign back there.
 Friend: Oh, I didn't even notice. Must be zoned out from the night.
@@ -33,17 +33,114 @@ Friend: I got it! I got it. Just gotta... focus. No worries.
 ===
 
 title: TutorialEnd
-position: 139,102
+position: -403,246
 ---
 You: That didn't feel like just being tired. Are you sure you're okay?
-Friend: "I told you, man, I'm fine! It's nothing serious.
-<<jump Speeding>>
+Friend: I told you, man, I'm fine! It's nothing serious.
+<<jump SpeedingStart>>
 ===
 
-title: Speeding
-position: 139,102
+title: SpeedingStart
+position: -117,-145
 ---
-You: That didn't feel like just being tired. You sure you're okay?
-Friend: "I told you, man, I'm fine! It's nothing serious.
+You: You're not fine, man. What did you do before coming?
+Friend: It was just a few beers. That's like nothing.
+///Car starts speeding
+        -> And now you're speeding down this road like you're trying to prove something. Slow down, man.
+            Friend: It's fine. I just want to get home faster. What's the big deal?
+            You: The big deal is that you're driving buzzed. You think that's not going to mess with your reaction time?
+            Friend: I've got this under control. You're worrying too much.
+            -> Speeding when you're buzzed is the worst idea. Slow down before you lose control completely.
+                ///friend slows down
+            -> Do nothing
+        -> You're driving like a maniac AND you're drunk. Just slow down before this gets worse.
+            Friend: I'm not even going that fast. I've driven like this before.
+            You: It's not about how fast you're going—it's about how your judgment is slipping. You're putting us both in danger!
+            Friend: I'm telling you, I've got it. Just relax.
+            -> You're not yourself right now. The alcohol is clouding your judgment. Slow down before it's too late.
+                ///friend slows down
+            -> Do nothing
+            
+        <<jump SpeedingEnd>>
+===
 
+title: SpeedingEnd
+position: -117,43
+---
+Friend: Whoa... that was close.
+You: You almost lost control back there! You keep saying you're fine, but I can see you're not. You're all over the place.
+Friend: I'm telling you, I've driven like this before. It's nothing I can't handle.
+You: Sure, just like your friends, right? You've seen them do it, but that doesn't mean you'll get away with it.
+Friend: They've done it plenty of times. I'm fine, trust me.
+<<jump SwervingStart>>
+===
+
+title: SwervingStart
+position: 179,-155
+---
+Friend: I've seen a bunch of my friends drive buzzed before. They're all fine. No crashes, nothing.
+    -> Yeah, well, you're not fine now. You're swerving all over the road like you don't even see where you're going.
+        Friend: I'm just adjusting to the road. I'm good.
+        You: Adjusting? You're steering into the other lane. Your friends might have gotten lucky, but you're asking for trouble.
+        Friend: I've seen worse, trust me. This isn't a big deal.
+        You: I don't care what your friends did. You're the one swerving right now, and that's how accidents happen.
+
+    -> Your friends might've gotten away with it, but that doesn't mean you will. You're swerving everywhere.
+        Friend: I've got this. I'm just a little buzzed. I'll get us home safely.
+        You: You're already crossing into the wrong lane. Don't act like this is normal.
+        Friend: It's fine, I can handle it. They did, and so can I.
+        You: Handling it? You can't even keep the car in one lane! Your friends were lucky, but luck runs out.
+    
+    ///<<setState Car 5>> //Start car swerving
+===
+
+title: SwervingEnd
+position: 179,43
+---
+Friend: Okay, okay... maybe I'm a little off tonight.
+You: A little off? You just swerved into another lane! You think a couple of drinks aren't affecting you? 
+Friend: I didn't even see it until the last second. But it's just the buzz—it's not a big deal.
+You: Buzzed driving is drunk driving, man. You can't even stop in time.
+Friend: I've got it. It's not like I'm totally drunk or anything.
+You: Doesn't matter. If you're reacting this late, you're not as in control as you think.
+<<jump TrafficLightStart>>
+===
+
+title: TrafficLightStart
+position: 457,-151
+---
+Friend: I only had a few drinks. It's not like I'm plastered. A little buzz doesn't hit me that hard.
+    -> You sure about that? You just missed that stop sign. Doesn't seem like you're as sharp as you think.
+        Friend: I saw it, I just misjudged the timing. It's nothing serious.
+        You: Misjudging things is exactly what buzzed driving does to you. If you can't stop in time, what's next?
+        Friend: I've got it. A couple of drinks don't change that.
+        You: If you can't even stop when you need to, those "couple of drinks" are doing more than you think.
+        
+    -> You think a little alcohol doesn't matter? You're not reacting fast enough—look at that stop sign you almost ran.
+        Friend: I'm fine. I saw it and stopped, didn't I?
+        You: Barely! That buzz is slowing you down. You don't even realize how much it's affecting you.
+        Friend: I've driven buzzed before, it's nothing new.
+        You: Maybe you've gotten away with it, but that doesn't mean you're safe. Buzzed driving is dangerous.
+    
+    ///traffic light game
+===
+
+title: TrafficLightEnd
+position: 457,38
+---
+Friend: That light came up faster than I thought.
+You: Exactly! You're slowing down mentally. You need to stop.
+    -> Come on, man, you're about to pass out. Let's stop this before it gets worse.
+        Friend: No, no. I'm not pulling over, we're almost home.
+        You: "You can barely keep your eyes open. You're going to lose control completely."
+        Friend: "I said I've got this! We'll be fine."
+        You: "You're not fine, and you're about to black out. Just stop before it's too late."
+    
+    <<jump ConciousnessStart>>
+===
+
+title: ConciousnessStart
+position: 726,-154
+---
+Conciousness game
 ===
