@@ -44,6 +44,7 @@ public class DrunkAIMovement : MonoBehaviour
     [SerializeField]
     float playerTurnAmount = 2f;
 
+
     MovementState state;
     Rigidbody rb;
 
@@ -79,6 +80,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Update()
     {
+
         Debug.Log($"{state}");
         HandleState();
     }

@@ -6,7 +6,7 @@ Friend: Hey, sorry for being late. Hop in.
         -> No worries, man. Thanks for coming.
 Friend: Let's get out of here.
         -> Get in
-            <<setState Car 0>> //Start car
+            <<setState Car 1>> //Start car
             <<jump TutorialSetup>>
 ===
 
