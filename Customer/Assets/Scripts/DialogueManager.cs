@@ -34,4 +34,9 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueRunner.StartDialogue(startNode);
     }
+
+    public string GetCurrentNode()
+    {
+        return dialogueRunner.CurrentNodeName;
+    }
 }

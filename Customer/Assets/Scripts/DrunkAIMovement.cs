@@ -66,7 +66,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     private void Awake()
     {
-        SetState(MovementState.BeforeTakingOff);
+        SetState(MovementState.TutorialAutoSwerve);
         rb = GetComponent<Rigidbody>();
 
         TrafficLightController.OnSignalChangeBackToGreen += StartMovingAgain;
@@ -92,6 +92,7 @@ public class DrunkAIMovement : MonoBehaviour
 
                 transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveMultiplier/*swerve force*/, 0f);
 
+                Debug.Log($"Current rotation: {transform.rotation.y} RotationWhenStartedSwerving: {rotationWhenStartedSwerving}");
                 if (transform.rotation.y <= rotationWhenStartedSwerving - tutorialAutoSwerveRotationAmount)
                 {
                     SetState(MovementState.TutorialAutoSwerveCorrect);
@@ -106,7 +107,10 @@ public class DrunkAIMovement : MonoBehaviour
                 }
                 else
                 {
-                    CheckIfReachedWaypoint();
+                    if (CheckIfReachedWaypoint())
+                    {
+                        DialogueManager.instance.StartDialogue("TutorialSwerving");
+                    }
                 }
 
                 break;
@@ -216,7 +220,14 @@ public class DrunkAIMovement : MonoBehaviour
             case MovementState.PassengerControl:
 
                 HandlePlayerInput();
-                CheckIfReachedWaypoint();
+                if (CheckIfReachedWaypoint()) { 
+                    switch (DialogueManager.instance.GetCurrentNode())
+                    {
+                        case "TutorialSwerving":
+                            DialogueManager.instance.StartDialogue("TutorialEnd");
+                            break;
+                    }
+                }
 
                 break;
             case MovementState.Accelerating:
@@ -274,7 +285,7 @@ public class DrunkAIMovement : MonoBehaviour
         }
     }
 
-    void CheckIfReachedWaypoint()
+    bool CheckIfReachedWaypoint()
     {
         var possibleWaypoint = waypoints.FirstOrDefault(w => Vector3.Magnitude(transform.position - w.transform.position) < w.GetComponent<DebugDrawCircleRange>().Radius);
         if (possibleWaypoint != null)
@@ -284,7 +295,10 @@ public class DrunkAIMovement : MonoBehaviour
             waypoints.RemoveRange(0, waypoints.IndexOf(currentWaypointToFollow));
 
             SetState(MovementState.Normal);
+            return true;
         }
+
+        return false;
     }
 
     void HandleWaypointFollowing()
