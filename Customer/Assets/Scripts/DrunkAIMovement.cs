@@ -79,6 +79,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(transform.eulerAngles.y);
         Debug.Log($"{state}");
         HandleState();
     }
@@ -92,8 +93,8 @@ public class DrunkAIMovement : MonoBehaviour
 
                 transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveMultiplier/*swerve force*/, 0f);
 
-                Debug.Log($"Current rotation: {transform.rotation.y} RotationWhenStartedSwerving: {rotationWhenStartedSwerving}");
-                if (transform.rotation.y <= rotationWhenStartedSwerving - tutorialAutoSwerveRotationAmount)
+                if ((transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y)/*Converted degrees*/
+                    <= rotationWhenStartedSwerving - tutorialAutoSwerveRotationAmount)
                 {
                     SetState(MovementState.TutorialAutoSwerveCorrect);
                 }
@@ -101,7 +102,8 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.TutorialAutoSwerveCorrect:
 
-                if (transform.rotation.y < rotationWhenStartedSwerving + tutorialAutoSwerveRotationAmount)
+                if ((transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y)/*Converted degrees*/
+                    < rotationWhenStartedSwerving + tutorialAutoSwerveRotationAmount)
                 {
                     transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
                 }
@@ -344,13 +346,13 @@ public class DrunkAIMovement : MonoBehaviour
         switch (state)
         {
             case MovementState.TutorialAutoSwerve:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TutorialManualSwerve:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.Swerving:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TrafficLight:
                 moveSpeed = moveSpeedWhenDecelerating;

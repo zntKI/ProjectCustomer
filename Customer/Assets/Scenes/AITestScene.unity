@@ -405,13 +405,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359608475}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.19706108, z: -0, w: 0.98039126}
+  m_LocalRotation: {x: 0, y: 0.06836354, z: 0, w: 0.99766046}
   m_LocalPosition: {x: -1186, y: 1.0173, z: -919}
   m_LocalScale: {x: 3.6643744, y: 1.8346, z: 7.3885}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 22.73, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 7.84, z: 0}
 --- !u!54 &359608480
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -458,9 +458,12 @@ MonoBehaviour:
   timeForReactionSecAccelerating: 2
   speedAcceleratingDecreaseAmount: 15
   moveSpeedWhenDecelerating: 45
-  swerveMultiplierMin: -5
-  swerveMultiplierMax: 5
   swerveRotationDefaultAmount: 0.1
+  tutorialAutoSwerveMultiplier: -1
+  tutorialAutoSwerveRotationAmount: 20
+  tutorialAutoSwerveCorrectionMultiplier: -1.1
+  tutorialManualSwerveMultiplier: -1.5
+  normalSwerveMultiplier: -2
   playerTurnAmount: 2
 --- !u!1001 &422968385
 PrefabInstance:
