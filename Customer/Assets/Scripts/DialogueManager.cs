@@ -11,19 +11,16 @@ public class DialogueManager : DialogueViewBase
     public static DialogueManager instance;
 
     [SerializeField] DialogueRunner dialogueRunner;
-    private bool waitingForInput = false;
-    private Coroutine autoProgressCoroutine;
-
-    [SerializeField] GameObject optionsListView;
     [SerializeField] GameObject optionsContainer;
     [SerializeField] GameObject lastLine;
     [SerializeField] GameObject buttonPrefab;
 
     [SerializeField] float progressDelay = 2f;
 
-    private List<GameObject> instantiatedButtons = new List<GameObject>();
+    readonly private List<GameObject> instantiatedButtons = new();
 
-    private Coroutine autoSelectCoroutine;
+    private Coroutine autoProgressOptionsCoroutine;
+    private Coroutine autoProgressDialogueCoroutine;
 
     private void Awake()
     {
@@ -37,8 +34,11 @@ public class DialogueManager : DialogueViewBase
     public override void RunOptions(DialogueOption[] dialogueOptions, System.Action<int> onOptionSelected)
     {
         // Clear any previous buttons
-        ClearOptions();
+        ClearOptionButtons();
 
+        // Activate the options container so the buttons are visible
+
+        optionsContainer.SetActive(true);
         // Display the last line said
         lastLine.SetActive(true);
 
@@ -63,21 +63,20 @@ public class DialogueManager : DialogueViewBase
             int optionIndex = option.DialogueOptionID;
             buttonComponent.onClick.AddListener(() => {
                 onOptionSelected(optionIndex); // Call the callback to select the option
-                ClearOptions();                // Clear the options once one is selected
+                ClearOptionButtons();                // Clear the options once one is selected
+                StopAutoProgressOptions();        // Stop coroutine
                 lastLine.SetActive(false);     // Clear the last line said
             });
 
             instantiatedButtons.Add(newButton);
         }
 
-        // Activate the options container so the buttons are visible
-        optionsContainer.SetActive(true);
+        autoProgressOptionsCoroutine = StartCoroutine(AutoProgressOptionsCoroutine(dialogueOptions.Length, onOptionSelected));
 
-        autoSelectCoroutine = StartCoroutine(AutoSelectOptionAfterDelay(dialogueOptions.Length, onOptionSelected));
     }
 
-    // Coroutine to automatically select the last option after a delay
-    private IEnumerator AutoSelectOptionAfterDelay(int numberOfOptions, System.Action<int> selectOption)
+    // Select the last option after a delay
+    private IEnumerator AutoProgressOptionsCoroutine(int numberOfOptions, System.Action<int> selectOption)
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(progressDelay);
@@ -88,7 +87,7 @@ public class DialogueManager : DialogueViewBase
     }
 
     // Clears all instantiated buttons
-    private void ClearOptions()
+    private void ClearOptionButtons()
     {
         foreach (GameObject button in instantiatedButtons)
         {
@@ -97,38 +96,45 @@ public class DialogueManager : DialogueViewBase
         instantiatedButtons.Clear();
     }
 
+    private void StopAutoProgressOptions()
+    {
+        // Stop the auto-progress coroutine if it's running
+        if (autoProgressOptionsCoroutine != null)
+        {
+            StopCoroutine(autoProgressOptionsCoroutine);
+            autoProgressOptionsCoroutine = null;
+        }
+    }
+
 
     /// <summary>
     /// Auto progress options
     /// </summary>
     ///
-    
+
     //Called when Yarn Spinner has dialogue to present
     public override void RunLine(LocalizedLine dialogueLine, System.Action onDialogueLineFinished)
     {
-        ///Debug.Log("run line");
         base.RunLine(dialogueLine, onDialogueLineFinished);
 
         // Start displaying the line
-        waitingForInput = true;
-        StartCoroutine(AutoProgressCoroutine());
+        autoProgressDialogueCoroutine = StartCoroutine(AutoProgressDialogueCoroutine());
     }
 
-    private IEnumerator AutoProgressCoroutine()
+    private IEnumerator AutoProgressDialogueCoroutine()
     {
         float timeElapsed = 0f;
-
+        bool waitingForInput = true;
 
         // Wait for either input or auto-progression
         while (waitingForInput && timeElapsed < progressDelay)
         {
-            // If the player presses a continue button or other input
+            // If the player continues dialogue
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                // Stop waiting for input and finish the dialogue line
+                // Stop waiting for input
                 waitingForInput = false;
-                StopAutoProgress();
-                dialogueRunner.dialogueViews[0].UserRequestedViewAdvancement();
+                StopAutoProgressDialogue();
                 yield break;
             }
 
@@ -144,13 +150,13 @@ public class DialogueManager : DialogueViewBase
         }
     }
 
-    private void StopAutoProgress()
+    private void StopAutoProgressDialogue()
     {
         // Stop the auto-progress coroutine if it's running
-        if (autoProgressCoroutine != null)
+        if (autoProgressDialogueCoroutine != null)
         {
-            StopCoroutine(autoProgressCoroutine);
-            autoProgressCoroutine = null;
+            StopCoroutine(autoProgressDialogueCoroutine);
+            autoProgressDialogueCoroutine = null;
         }
     }
 }

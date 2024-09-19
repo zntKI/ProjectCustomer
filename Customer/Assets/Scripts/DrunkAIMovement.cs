@@ -47,6 +47,7 @@ public class DrunkAIMovement : MonoBehaviour
     [SerializeField]
     float playerTurnAmount = 2f;
 
+
     MovementState state;
     Rigidbody rb;
 
