@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Yarn.Unity;
+using static UnityEngine.GraphicsBuffer;
 
 public class DrunkAIMovement : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class DrunkAIMovement : MonoBehaviour
     float targetMoveSpeed = 75f;
     [SerializeField]
     float moveSpeedIncreaseAmount = 5f;
+    [SerializeField]
+    float rotationSpeed = 5f;
 
     [Header("Accelerating")]
     [SerializeField]
@@ -103,17 +106,10 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.TutorialAutoSwerveCorrect:
 
-                if ((transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y)/*Converted degrees*/
-                    < rotationWhenStartedSwerving + tutorialAutoSwerveRotationAmount)
+                transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
+                if (CheckIfReachedWaypoint())
                 {
-                    transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
-                }
-                else
-                {
-                    if (CheckIfReachedWaypoint())
-                    {
-                        DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
-                    }
+                    DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
                 }
 
                 break;
@@ -202,7 +198,7 @@ public class DrunkAIMovement : MonoBehaviour
                 //    SetState(MovementState.TrafficLight);
                 //    trafficLightInRange.GetComponent<TrafficLightController>().ChangeSignal(TrafficLightSignal.Red);
                 //}
-                
+
                 break;
             case MovementState.TutorialAutoSwerve:
 
@@ -223,7 +219,8 @@ public class DrunkAIMovement : MonoBehaviour
             case MovementState.PassengerControl:
 
                 HandlePlayerInput();
-                if (CheckIfReachedWaypoint()) { 
+                if (CheckIfReachedWaypoint())
+                {
                     switch (DialogueNodeManager.instance.GetCurrentNode())
                     {
                         case "TutorialSwerving":
@@ -313,7 +310,15 @@ public class DrunkAIMovement : MonoBehaviour
             currentWaypointToFollowData = currentWaypointToFollow.GetComponent<DebugDrawCircleRange>();
             waypoints.RemoveAt(0);
         }
-        transform.LookAt(currentWaypointToFollow.transform);
+        //transform.LookAt(currentWaypointToFollow.transform);
+
+        // Calculate the direction to the target
+        Vector3 direction = currentWaypointToFollow.transform.position - transform.position;
+        // Calculate the target rotation using the direction vector
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        // Smoothly rotate towards the target rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
 
         if (Vector3.Magnitude(transform.position - currentWaypointToFollow.transform.position) < currentWaypointToFollowData.Radius)
         {

@@ -37,20 +37,20 @@ public class CameraController : MonoBehaviour
         float oldHorRotation = transform.rotation.eulerAngles.y;
         float newHorRotation = oldHorRotation + horizontalRotation;
 
-        // clamp horizontal rotation
-        // clamp between 310-360 or 0-50
-        if (newHorRotation > minHorAngle && newHorRotation < maxHorAngle)
-        {
-            // if the new rotation is outside of both ranges, choose the closest limit
-            if (oldHorRotation <= minHorAngle)
-            {
-                newHorRotation = minHorAngle - 0.1f;  // Stay within the lower range
-            }
-            else if (oldHorRotation >= maxHorAngle)
-            {
-                newHorRotation = maxHorAngle + 0.1f;  // Stay within the upper range
-            }
-        }
+        //// clamp horizontal rotation
+        //// clamp between 310-360 or 0-50
+        //if (newHorRotation > minHorAngle && newHorRotation < maxHorAngle)
+        //{
+        //    // if the new rotation is outside of both ranges, choose the closest limit
+        //    if (oldHorRotation <= minHorAngle)
+        //    {
+        //        newHorRotation = minHorAngle - 0.1f;  // Stay within the lower range
+        //    }
+        //    else if (oldHorRotation >= maxHorAngle)
+        //    {
+        //        newHorRotation = maxHorAngle + 0.1f;  // Stay within the upper range
+        //    }
+        //}
         
         horizontalRotation = newHorRotation - oldHorRotation;
 
