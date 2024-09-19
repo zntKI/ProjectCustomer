@@ -14,7 +14,6 @@ public class DialogueManager : DialogueViewBase
     private bool waitingForInput = false;
     private Coroutine autoProgressCoroutine;
 
-    [SerializeField] GameObject optionsListView;
     [SerializeField] GameObject optionsContainer;
     [SerializeField] GameObject lastLine;
     [SerializeField] GameObject buttonPrefab;
@@ -74,6 +73,7 @@ public class DialogueManager : DialogueViewBase
         optionsContainer.SetActive(true);
 
         autoSelectCoroutine = StartCoroutine(AutoSelectOptionAfterDelay(dialogueOptions.Length, onOptionSelected));
+
     }
 
     // Coroutine to automatically select the last option after a delay

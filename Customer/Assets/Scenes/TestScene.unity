@@ -3243,7 +3243,7 @@ GameObject:
   - component: {fileID: 2039555981}
   - component: {fileID: 2039555980}
   m_Layer: 0
-  m_Name: DialogueOptionsManager
+  m_Name: DialogueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3265,7 +3265,7 @@ MonoBehaviour:
   optionsContainer: {fileID: 901859727}
   lastLine: {fileID: 2045579391}
   buttonPrefab: {fileID: 1347894530585652524, guid: e2acf4af75b2ef248a47a7abf75fd589, type: 3}
-  progressDelay: 2
+  progressDelay: 5
 --- !u!4 &2039555981
 Transform:
   m_ObjectHideFlags: 0
