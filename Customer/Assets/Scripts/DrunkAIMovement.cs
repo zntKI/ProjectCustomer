@@ -111,7 +111,7 @@ public class DrunkAIMovement : MonoBehaviour
                 {
                     if (CheckIfReachedWaypoint())
                     {
-                        DialogueManager.instance.StartDialogue("TutorialSwerving");
+                        DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
                     }
                 }
 
@@ -137,7 +137,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        //DialogueManager.instance.StartDialogue("TutorialEnd");
+        //DialogueNodeManager.instance.StartDialogue("TutorialEnd");
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -223,10 +223,10 @@ public class DrunkAIMovement : MonoBehaviour
 
                 HandlePlayerInput();
                 if (CheckIfReachedWaypoint()) { 
-                    switch (DialogueManager.instance.GetCurrentNode())
+                    switch (DialogueNodeManager.instance.GetCurrentNode())
                     {
                         case "TutorialSwerving":
-                            DialogueManager.instance.StartDialogue("TutorialEnd");
+                            DialogueNodeManager.instance.StartDialogue("TutorialEnd");
                             break;
                     }
                 }
