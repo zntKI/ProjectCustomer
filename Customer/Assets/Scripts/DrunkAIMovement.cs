@@ -55,7 +55,7 @@ public class DrunkAIMovement : MonoBehaviour
     float moveSpeed;
 
     //Waypoints vars
-    List<GameObject> waypoints;
+    List<GameObject> waypoints = new List<GameObject>();
 
     GameObject currentWaypointToFollow;
     DebugDrawCircleRange currentWaypointToFollowData;
@@ -78,7 +78,12 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Start()
     {
-        waypoints = GameObject.FindGameObjectsWithTag("GameController").OrderBy(w => w.GetComponent<DebugDrawCircleRange>().Id).ToList();
+        var waypointParent = GameObject.FindGameObjectWithTag("GameController");
+        for (int i = 0; i < waypointParent.transform.childCount; i++)
+        {
+            Debug.Log(i);
+            waypoints.Add(waypointParent.transform.GetChild(i).gameObject);
+        }
     }
 
     void Update()
@@ -134,7 +139,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        //DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+        
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -161,6 +166,19 @@ public class DrunkAIMovement : MonoBehaviour
 
         if (transform.rotation.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
         {
+
+            switch (state)
+            {
+                case MovementState.TutorialManualSwerve:
+                    DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+                    break;
+                case MovementState.Swerving:
+                    DialogueNodeManager.instance.StartDialogue("SwervingEnd");
+                    break;
+                default:
+                    break;
+            }
+
             SetState(MovementState.PassengerControl);
         }
     }
@@ -217,18 +235,10 @@ public class DrunkAIMovement : MonoBehaviour
 
                 break;
             case MovementState.PassengerControl:
+                HandlePlayerInput();
 
                 HandlePlayerInput();
-                if (CheckIfReachedWaypoint())
-                {
-                    switch (DialogueNodeManager.instance.GetCurrentNode())
-                    {
-                        case "TutorialSwerving":
-                            DialogueNodeManager.instance.StartDialogue("TutorialEnd");
-                            break;
-                    }
-                }
-
+                CheckIfReachedWaypoint();
                 break;
             case MovementState.Accelerating:
 
