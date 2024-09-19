@@ -139,7 +139,6 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        //DialogueNodeManager.instance.StartDialogue("TutorialEnd");
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -222,14 +221,16 @@ public class DrunkAIMovement : MonoBehaviour
 
                 break;
             case MovementState.PassengerControl:
-
                 HandlePlayerInput();
+
                 if (CheckIfReachedWaypoint())
                 {
                     switch (DialogueNodeManager.instance.GetCurrentNode())
                     {
                         case "TutorialSwerving":
                             DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+                            break;
+                        default:
                             break;
                     }
                 }
