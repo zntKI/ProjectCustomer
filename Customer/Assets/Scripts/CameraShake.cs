@@ -4,12 +4,24 @@ using DG.Tweening;
 public class Camerashake : MonoBehaviour
 {
     public static Camerashake instance;
+
+    [SerializeField] float cameraDuration = 0.5f;
+    [SerializeField] float cameraStrength = 0.5f;
+
     private Vector3 originalPosition;
 
     private void Awake()
     {
         instance = this;
         originalPosition = transform.localPosition; // Store the original position of the camera
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Camerashake.Shake(cameraDuration, cameraStrength);
+        }
     }
 
     private void OnShake(float duration, float strength)
