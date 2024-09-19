@@ -80,7 +80,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Update()
     {
-
+        //Debug.Log(transform.eulerAngles.y);
         Debug.Log($"{state}");
         HandleState();
     }
@@ -94,7 +94,8 @@ public class DrunkAIMovement : MonoBehaviour
 
                 transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveMultiplier/*swerve force*/, 0f);
 
-                if (transform.rotation.y <= rotationWhenStartedSwerving - tutorialAutoSwerveRotationAmount)
+                if ((transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y)/*Converted degrees*/
+                    <= rotationWhenStartedSwerving - tutorialAutoSwerveRotationAmount)
                 {
                     SetState(MovementState.TutorialAutoSwerveCorrect);
                 }
@@ -102,13 +103,17 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.TutorialAutoSwerveCorrect:
 
-                if (transform.rotation.y < rotationWhenStartedSwerving + tutorialAutoSwerveRotationAmount)
+                if ((transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y)/*Converted degrees*/
+                    < rotationWhenStartedSwerving + tutorialAutoSwerveRotationAmount)
                 {
                     transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
                 }
                 else
                 {
-                    CheckIfReachedWaypoint();
+                    if (CheckIfReachedWaypoint())
+                    {
+                        DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
+                    }
                 }
 
                 break;
@@ -133,7 +138,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        //DialogueManager.instance.StartDialogue("TutorialEnd");
+        //DialogueNodeManager.instance.StartDialogue("TutorialEnd");
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -153,7 +158,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        float playerRotationAmount = isTryingToCorrectSwerve ? Mathf.Abs(swerveRotationAmount) * playerTurnAmount : 0; //player force
+        float playerRotationAmount = swerveCorrectionInputValue == 1 ? Mathf.Abs(swerveRotationAmount) * playerTurnAmount : 0; //player force
         float rotationAmount = swerveRotationAmount + playerRotationAmount; //end force amount depending on input
 
         transform.Rotate(0f, rotationAmount, 0f);
@@ -218,7 +223,14 @@ public class DrunkAIMovement : MonoBehaviour
             case MovementState.PassengerControl:
 
                 HandlePlayerInput();
-                CheckIfReachedWaypoint();
+                if (CheckIfReachedWaypoint()) { 
+                    switch (DialogueNodeManager.instance.GetCurrentNode())
+                    {
+                        case "TutorialSwerving":
+                            DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+                            break;
+                    }
+                }
 
                 break;
             case MovementState.Accelerating:
@@ -276,7 +288,7 @@ public class DrunkAIMovement : MonoBehaviour
         }
     }
 
-    void CheckIfReachedWaypoint()
+    bool CheckIfReachedWaypoint()
     {
         var possibleWaypoint = waypoints.FirstOrDefault(w => Vector3.Magnitude(transform.position - w.transform.position) < w.GetComponent<DebugDrawCircleRange>().Radius);
         if (possibleWaypoint != null)
@@ -286,7 +298,10 @@ public class DrunkAIMovement : MonoBehaviour
             waypoints.RemoveRange(0, waypoints.IndexOf(currentWaypointToFollow));
 
             SetState(MovementState.Normal);
+            return true;
         }
+
+        return false;
     }
 
     void HandleWaypointFollowing()
@@ -310,7 +325,6 @@ public class DrunkAIMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        isTryingToCorrectSwerve = Input.GetKeyDown(KeyCode.D);
         swerveCorrectionInputValue = Input.GetKey(KeyCode.D) ? 1 : 0;
     }
 
@@ -332,13 +346,13 @@ public class DrunkAIMovement : MonoBehaviour
         switch (state)
         {
             case MovementState.TutorialAutoSwerve:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TutorialManualSwerve:
                 rotationWhenStartedSwerving = transform.rotation.y;
                 break;
             case MovementState.Swerving:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TrafficLight:
                 moveSpeed = moveSpeedWhenDecelerating;

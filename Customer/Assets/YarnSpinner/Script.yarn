@@ -26,10 +26,16 @@ You: Uh, you kinda blew past that stop sign back there.
 Friend: Oh, I didn't even notice. Must be zoned out from the night.
 You: Zoned out? You don't look great, man. Tired or something?
 Friend: Yeah, just tired. Don't worry about it.
-///Car swerves and returns 
+<<setState Car 3>> //
+===
+
+
+title: TutorialSwerving
+position: -404,45
+---
 You: Uh, you're kinda swerving a bit.
 Friend: I got it! I got it. Just gotta... focus. No worries.
-///<<setState Car 5>> //Start car swerving
+<<setState Car 5>> //Start car swerving
 ===
 
 title: TutorialEnd
