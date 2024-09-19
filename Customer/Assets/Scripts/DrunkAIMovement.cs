@@ -105,17 +105,10 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.TutorialAutoSwerveCorrect:
 
-                if ((transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y)/*Converted degrees*/
-                    < rotationWhenStartedSwerving + tutorialAutoSwerveRotationAmount)
+                transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
+                if (CheckIfReachedWaypoint())
                 {
-                    transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
-                }
-                else
-                {
-                    if (CheckIfReachedWaypoint())
-                    {
-                        DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
-                    }
+                    DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
                 }
 
                 break;
