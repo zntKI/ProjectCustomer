@@ -41391,12 +41391,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: speedMaxWhenAccelerating
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialAutoSwerveMultiplier
       value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialManualSwerveMultiplier
       value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: speedAcceleratingDecreaseAmount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: speedAcceleratingIncreaseAmount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialAutoSwerveRotationAmount
