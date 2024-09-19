@@ -51,20 +51,24 @@ position: -117,-145
 You: You're not fine, man. What did you do before coming?
 Friend: It was just a few beers. That's like nothing.
 <<setState Car 7>>
-        -> And now you're speeding down this road like you're trying to prove something. Slow down, man.
+        -> Slow down, man.
+            You: And now you're speeding down this road like you're trying to prove something. Slow down, man.
             Friend: It's fine. I just want to get home faster. What's the big deal?
             You: The big deal is that you're driving buzzed. You think that's not going to mess with your reaction time?
             Friend: I've got this under control. You're worrying too much.
-            -> Speeding when you're buzzed is the worst idea. Slow down before you lose control completely.
+            -> Speeding when you're buzzed is the worst idea. 
+                You: Slow down before you lose control completely.
                 <<setState Car 9>> //Car starts speeding up
                 <<jump SpeedingEnd>>
             -> Do nothing
                 //gg
-        -> You're driving like a maniac AND you're drunk. Just slow down before this gets worse.
+        -> You're driving like a maniac AND you're drunk.
+            You: You're driving like a maniac AND you're drunk. Just slow down before this gets worse.
             Friend: I'm not even going that fast. I've driven like this before.
             You: It's not about how fast you're going—it's about how your judgment is slipping. You're putting us both in danger!
             Friend: I'm telling you, I've got it. Just relax.
-            -> You're not yourself right now. The alcohol is clouding your judgment. Slow down before it's too late.
+            -> The alcohol is clouding your judgment.
+                You: You're not yourself right now. The alcohol is clouding your judgment. Slow down before it's too late.
                 <<setState Car 9>> //Car starts speeding up
                 <<jump SpeedingEnd>>
             -> Do nothing
