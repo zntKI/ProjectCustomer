@@ -78,12 +78,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1060185437743464949}
   - {fileID: 8379112149038939465}
   - {fileID: 4189509225492958057}
   - {fileID: 1380725115043962327}
   - {fileID: 4825550252552289442}
   - {fileID: 7735654682637802686}
-  - {fileID: 1060185437743464949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2838773428947653389
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 2856559080609263978}
   optionsContainer: {fileID: 8556159078597073225}
-  lastLine: {fileID: 0}
+  lastLine: {fileID: 7525553316265805965}
   buttonPrefab: {fileID: 1347894530585652524, guid: e2acf4af75b2ef248a47a7abf75fd589, type: 3}
   progressDelay: 2
 --- !u!1 &8292636776158287633
@@ -1243,8 +1243,43 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400004, guid: eca2e4fa9f3d58440aba946d58762984, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3036250875638368597}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: eca2e4fa9f3d58440aba946d58762984, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5696473214834942424}
   m_SourcePrefab: {fileID: 100100000, guid: eca2e4fa9f3d58440aba946d58762984, type: 3}
+--- !u!1 &1060185437743242709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: eca2e4fa9f3d58440aba946d58762984, type: 3}
+  m_PrefabInstance: {fileID: 1060185437743340401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5696473214834942424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060185437743242709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e687429f0bac9b44b9b954b09436ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMoveSpeed: 75
+  moveSpeedIncreaseAmount: 5
+  rotationSpeed: 5
+  speedMaxWhenAccelerating: 120
+  speedAcceleratingIncreaseAmount: 10
+  timeForReactionSecAccelerating: 4
+  speedAcceleratingDecreaseAmount: 15
+  moveSpeedWhenDecelerating: 45
+  swerveRotationDefaultAmount: 0.1
+  tutorialAutoSwerveMultiplier: -1
+  tutorialAutoSwerveRotationAmount: 20
+  tutorialAutoSwerveCorrectionMultiplier: -1.1
+  tutorialManualSwerveMultiplier: -1.5
+  normalSwerveMultiplier: -2
+  playerTurnAmount: 2
 --- !u!4 &1060185437743464949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: eca2e4fa9f3d58440aba946d58762984, type: 3}
@@ -1358,6 +1393,10 @@ PrefabInstance:
       propertyPath: dialogueViews.Array.data[1]
       value: 
       objectReference: {fileID: 7525553314617730275}
+    - target: {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
+      propertyPath: dialogueViews.Array.data[2]
+      value: 
+      objectReference: {fileID: 159169746449149207}
     - target: {fileID: 7778558434935992803, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1694,5 +1733,10 @@ MonoBehaviour:
 --- !u!224 &7525553314617730303 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6323935187928403879, guid: 638e885a48f1a46c29aaa1b64688b208, type: 3}
+  m_PrefabInstance: {fileID: 4590016096531999576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7525553316265805965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6323935188436132821, guid: 638e885a48f1a46c29aaa1b64688b208, type: 3}
   m_PrefabInstance: {fileID: 4590016096531999576}
   m_PrefabAsset: {fileID: 0}
