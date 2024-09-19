@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 2856559080609263978}
   optionsContainer: {fileID: 8556159078597073225}
-  lastLine: {fileID: 0}
+  lastLine: {fileID: 7525553316265805965}
   buttonPrefab: {fileID: 1347894530585652524, guid: e2acf4af75b2ef248a47a7abf75fd589, type: 3}
   progressDelay: 2
 --- !u!1 &8292636776158287633
@@ -1358,6 +1358,10 @@ PrefabInstance:
       propertyPath: dialogueViews.Array.data[1]
       value: 
       objectReference: {fileID: 7525553314617730275}
+    - target: {fileID: 3579681405068720530, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
+      propertyPath: dialogueViews.Array.data[2]
+      value: 
+      objectReference: {fileID: 159169746449149207}
     - target: {fileID: 7778558434935992803, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1694,5 +1698,10 @@ MonoBehaviour:
 --- !u!224 &7525553314617730303 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6323935187928403879, guid: 638e885a48f1a46c29aaa1b64688b208, type: 3}
+  m_PrefabInstance: {fileID: 4590016096531999576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7525553316265805965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6323935188436132821, guid: 638e885a48f1a46c29aaa1b64688b208, type: 3}
   m_PrefabInstance: {fileID: 4590016096531999576}
   m_PrefabAsset: {fileID: 0}
