@@ -50,7 +50,7 @@ position: -117,-145
 ---
 You: You're not fine, man. What did you do before coming?
 Friend: It was just a few beers. That's like nothing.
-<<setState Car 7>>
+<<setState Car 7>> //Car starts speeding up
         -> Slow down, man.
             You: And now you're speeding down this road like you're trying to prove something. Slow down, man.
             Friend: It's fine. I just want to get home faster. What's the big deal?
@@ -58,7 +58,7 @@ Friend: It was just a few beers. That's like nothing.
             Friend: I've got this under control. You're worrying too much.
             -> Speeding when you're buzzed is the worst idea. 
                 You: Slow down before you lose control completely.
-                <<setState Car 9>> //Car starts speeding up
+                <<setState Car 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
                 //gg
@@ -69,7 +69,7 @@ Friend: It was just a few beers. That's like nothing.
             Friend: I'm telling you, I've got it. Just relax.
             -> The alcohol is clouding your judgment.
                 You: You're not yourself right now. The alcohol is clouding your judgment. Slow down before it's too late.
-                <<setState Car 9>> //Car starts speeding up
+                <<setState Car 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
                 //gg
