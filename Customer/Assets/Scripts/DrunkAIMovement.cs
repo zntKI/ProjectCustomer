@@ -55,7 +55,7 @@ public class DrunkAIMovement : MonoBehaviour
     float moveSpeed;
 
     //Waypoints vars
-    List<GameObject> waypoints;
+    List<GameObject> waypoints = new List<GameObject>();
 
     GameObject currentWaypointToFollow;
     DebugDrawCircleRange currentWaypointToFollowData;
@@ -78,7 +78,12 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Start()
     {
-        waypoints = GameObject.FindGameObjectsWithTag("GameController").OrderBy(w => w.GetComponent<DebugDrawCircleRange>().Id).ToList();
+        var waypointParent = GameObject.FindGameObjectWithTag("GameController");
+        for (int i = 0; i < waypointParent.transform.childCount; i++)
+        {
+            Debug.Log(i);
+            waypoints.Add(waypointParent.transform.GetChild(i).gameObject);
+        }
     }
 
     void Update()
