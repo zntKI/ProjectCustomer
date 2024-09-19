@@ -1265,18 +1265,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e687429f0bac9b44b9b954b09436ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMoveSpeed: 75
-  moveSpeedIncreaseAmount: 5
-  rotationSpeed: 5
+  targetMoveSpeed: 10
+  moveSpeedIncreaseAmount: 2
+  rotationSpeed: 10
   speedMaxWhenAccelerating: 120
   speedAcceleratingIncreaseAmount: 10
   timeForReactionSecAccelerating: 4
   speedAcceleratingDecreaseAmount: 15
-  moveSpeedWhenDecelerating: 45
+  moveSpeedWhenDecelerating: 10
   swerveRotationDefaultAmount: 0.1
   tutorialAutoSwerveMultiplier: -1
   tutorialAutoSwerveRotationAmount: 20
-  tutorialAutoSwerveCorrectionMultiplier: -1.1
+  tutorialAutoSwerveCorrectionMultiplier: 1.1
   tutorialManualSwerveMultiplier: -1.5
   normalSwerveMultiplier: -2
   playerTurnAmount: 2
