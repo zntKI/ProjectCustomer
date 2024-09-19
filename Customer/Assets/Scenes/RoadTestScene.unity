@@ -41378,6 +41378,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.2850012
       objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: targetMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: playerTurnAmount
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: moveSpeedIncreaseAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: tutorialAutoSwerveMultiplier
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: tutorialManualSwerveMultiplier
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: tutorialAutoSwerveRotationAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: tutorialAutoSwerveCorrectionMultiplier
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6904326185014257869, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

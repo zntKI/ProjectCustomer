@@ -164,9 +164,8 @@ public class DrunkAIMovement : MonoBehaviour
 
         transform.Rotate(0f, rotationAmount, 0f);
 
-        if (transform.rotation.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
+        if (transform.localEulerAngles.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
         {
-
             switch (state)
             {
                 case MovementState.TutorialManualSwerve:
@@ -364,10 +363,10 @@ public class DrunkAIMovement : MonoBehaviour
                 rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TutorialManualSwerve:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y;
                 break;
             case MovementState.Swerving:
-                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y;
                 break;
             case MovementState.TrafficLight:
                 moveSpeed = moveSpeedWhenDecelerating;
