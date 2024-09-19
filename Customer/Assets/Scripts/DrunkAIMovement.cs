@@ -139,6 +139,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
+        
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -165,6 +166,19 @@ public class DrunkAIMovement : MonoBehaviour
 
         if (transform.rotation.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
         {
+
+            switch (state)
+            {
+                case MovementState.TutorialManualSwerve:
+                    DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+                    break;
+                case MovementState.Swerving:
+                    DialogueNodeManager.instance.StartDialogue("SwervingEnd");
+                    break;
+                default:
+                    break;
+            }
+
             SetState(MovementState.PassengerControl);
         }
     }
@@ -223,18 +237,8 @@ public class DrunkAIMovement : MonoBehaviour
             case MovementState.PassengerControl:
                 HandlePlayerInput();
 
-                if (CheckIfReachedWaypoint())
-                {
-                    switch (DialogueNodeManager.instance.GetCurrentNode())
-                    {
-                        case "TutorialSwerving":
-                            DialogueNodeManager.instance.StartDialogue("TutorialEnd");
-                            break;
-                        default:
-                            break;
-                    }
-                }
-
+                HandlePlayerInput();
+                CheckIfReachedWaypoint();
                 break;
             case MovementState.Accelerating:
 
