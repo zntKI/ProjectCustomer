@@ -34,12 +34,14 @@ position: -404,45
 ---
 You: Uh, you're kinda swerving a bit.
 Friend: I got it! I got it. Just gotta... focus. No worries.
+<<enableTutorialImage>>
 <<setState Car 5>> //Start car swerving
 ===
 
 title: TutorialEnd
 position: -403,246
 ---
+<<disableTutorialImage>>
 You: That didn't feel like just being tired. Are you sure you're okay?
 Friend: I told you, man, I'm fine! It's nothing serious.
 <<jump SpeedingStart>>
