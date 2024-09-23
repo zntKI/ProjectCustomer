@@ -116,6 +116,9 @@ Friend: I didn't even see it until the last second. But it's just the buzz—it'
 You: Buzzed driving is drunk driving, man. You can't even stop in time.
 Friend: I've got it. It's not like I'm totally drunk or anything.
 You: Doesn't matter. If you're reacting this late, you're not as in control as you think.
+
+<<setState Car 11>> //Spawn traffic light
+
 <<jump TrafficLightStart>>
 ===
 
@@ -137,7 +140,7 @@ Friend: I only had a few drinks. It's not like I'm plastered. A little buzz does
         Friend: I've driven buzzed before, it's nothing new.
         You: Maybe you've gotten away with it, but that doesn't mean you're safe. Buzzed driving is dangerous.
     
-    <<setState Car 11>> //Traffic Light game
+    <<setState Car 12>> //Traffic Light game
 ===
 
 title: TrafficLightEnd
