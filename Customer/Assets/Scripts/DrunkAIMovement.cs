@@ -1,3 +1,4 @@
+using EasyRoads3Dv3;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,14 @@ public class DrunkAIMovement : MonoBehaviour
     float normalSwerveMultiplier = -2f;
     [SerializeField]
     float playerTurnAmount = 2f;
+
+    [Header("TrafficLight")]
+    [SerializeField]
+    GameObject trafficLightPrefab; // The object you want to spawn
+    [SerializeField]
+    float distanceAheadForSpawn = 50f; // Distance ahead from the car in meters
+    [SerializeField]
+    float spawnPositionOffsetToTheRight = 5f;
 
 
     MovementState state;
@@ -283,6 +292,32 @@ public class DrunkAIMovement : MonoBehaviour
                 //Controlled in FixedUpdate
 
                 break;
+            case MovementState.SpawnTrafficLight:
+
+                Vector3 spawnPosition = Vector3.zero;
+                Quaternion spawnRotation = Quaternion.identity;
+
+                float distanceCounter = 0f;
+                for (int i = 0; i < waypoints.Count; i++)
+                {
+                    var waypoint = waypoints[i];
+
+                    distanceCounter += waypoint.GetComponent<DebugDrawCircleRange>().Radius;
+                    if (distanceCounter >= distanceAheadForSpawn)
+                    {
+                        spawnPosition = waypoint.transform.position + waypoint.transform.right * (spawnPositionOffsetToTheRight + trafficLightPrefab.transform.lossyScale.z / 2);
+
+                        Quaternion rotationOffset = Quaternion.Euler(0, 90, 0);
+                        spawnRotation = waypoint.transform.rotation * rotationOffset;
+
+                        break;
+                    }
+                }
+
+                Instantiate(trafficLightPrefab, spawnPosition, spawnRotation);
+                SetState(MovementState.Normal);
+
+                break;
             case MovementState.TrafficLight:
                 if (Input.GetKeyDown(KeyCode.S))
                 {
@@ -401,6 +436,7 @@ public enum MovementState
     WaitingToStartDecceleratingAfterAccelerating,
     DecceleratingAfterAccelerating,
     Swerving,
+    SpawnTrafficLight,
     TrafficLight
 }
 
