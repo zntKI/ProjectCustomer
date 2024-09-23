@@ -187,13 +187,14 @@ title: ConciousnessRound2
 
 title: ConciousnessRound3
 ---
+-> Can you even make it home like this?
+    You: Man, you're really out of it. Can you even make it home like this?
+    Friend: I told you... I'm good.
 -> You remember that trip we took last summer?
     You: You remember that trip we took last summer? Talk to me about it. What was your favorite part?
     Friend: Oh yeah... That was a good time. Let's see…, I loved the concert, I also liked partying.
     <<set $conciousness = $conciousness + 1>>
--> Can you even make it home like this?
-    You: Man, you're really out of it. Can you even make it home like this?
-    Friend: I told you... I'm good.
+
 <<jump ConciousnessRound4>>
 ===
 
@@ -211,13 +212,13 @@ title: ConciousnessRound4
 
 title: ConciousnessRound5
 ---
+-> You're going to pass out, aren't you?
+    You: You're going to pass out, aren't you? Don't crash us, man!
+    Friend: I... no... I won't...
 -> Focus. We're almost there.
     You: You can do this, man. Focus. Keep your eyes on the road, we're almost there.
     Friend: Yeah... almost there...
     <<set $conciousness = $conciousness + 1>>
--> You're going to pass out, aren't you?
-    You: You're going to pass out, aren't you? Don't crash us, man!
-    Friend: I... no... I won't...
 
 <<if $conciousness < 3>>
     ///Crash
@@ -236,6 +237,7 @@ Friend: Fine... I'll stop soon.
 You: The police are behind us.
 Friend: Oh no...
 You: This is probably the best outcome...
+///Police stop you
 ===
 
 title: BadEnding
@@ -248,4 +250,5 @@ You: No, you weren't! You never are when you've been drinking.
 You: This could've been way worse. You could have hurt someone—or worse, ourselves.
 Friend: I didn't think it'd get this bad.
 You: One drink is all it takes. Buzzed driving is just as dangerous. You can't take that risk.
+///Crash
 ===

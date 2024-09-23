@@ -41282,6 +41282,10 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 184729159}
+    - target: {fileID: 829962241137501420, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_SubmitButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1053124987431346876, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
