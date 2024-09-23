@@ -41302,6 +41302,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -96.93
       objectReference: {fileID: 0}
+    - target: {fileID: 2114428496057446979, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: continueActionKeyCode
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 2747249862703310095, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_Name
       value: FullCarPrefab
