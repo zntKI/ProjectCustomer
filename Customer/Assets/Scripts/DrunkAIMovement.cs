@@ -55,7 +55,7 @@ public class DrunkAIMovement : MonoBehaviour
     float moveSpeed;
 
     //Waypoints vars
-    List<GameObject> waypoints;
+    List<GameObject> waypoints = new List<GameObject>();
 
     GameObject currentWaypointToFollow;
     DebugDrawCircleRange currentWaypointToFollowData;
@@ -78,7 +78,12 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Start()
     {
-        waypoints = GameObject.FindGameObjectsWithTag("GameController").OrderBy(w => w.GetComponent<DebugDrawCircleRange>().Id).ToList();
+        var waypointParent = GameObject.FindGameObjectWithTag("GameController");
+        for (int i = 0; i < waypointParent.transform.childCount; i++)
+        {
+            Debug.Log(i);
+            waypoints.Add(waypointParent.transform.GetChild(i).gameObject);
+        }
     }
 
     void Update()
@@ -159,9 +164,8 @@ public class DrunkAIMovement : MonoBehaviour
 
         transform.Rotate(0f, rotationAmount, 0f);
 
-        if (transform.rotation.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
+        if (transform.localEulerAngles.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
         {
-
             switch (state)
             {
                 case MovementState.TutorialManualSwerve:
@@ -230,6 +234,7 @@ public class DrunkAIMovement : MonoBehaviour
 
                 break;
             case MovementState.PassengerControl:
+                HandlePlayerInput();
 
                 HandlePlayerInput();
                 CheckIfReachedWaypoint();
@@ -358,10 +363,10 @@ public class DrunkAIMovement : MonoBehaviour
                 rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TutorialManualSwerve:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y;
                 break;
             case MovementState.Swerving:
-                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y;
                 break;
             case MovementState.TrafficLight:
                 moveSpeed = moveSpeedWhenDecelerating;
