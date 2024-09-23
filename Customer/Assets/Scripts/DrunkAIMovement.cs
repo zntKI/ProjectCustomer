@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Yarn.Unity;
+using static UnityEngine.GraphicsBuffer;
 
 public class DrunkAIMovement : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class DrunkAIMovement : MonoBehaviour
     float targetMoveSpeed = 75f;
     [SerializeField]
     float moveSpeedIncreaseAmount = 5f;
+    [SerializeField]
+    float rotationSpeed = 5f;
 
     [Header("Accelerating")]
     [SerializeField]
@@ -52,7 +55,7 @@ public class DrunkAIMovement : MonoBehaviour
     float moveSpeed;
 
     //Waypoints vars
-    List<GameObject> waypoints;
+    List<GameObject> waypoints = new List<GameObject>();
 
     GameObject currentWaypointToFollow;
     DebugDrawCircleRange currentWaypointToFollowData;
@@ -75,7 +78,12 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Start()
     {
-        waypoints = GameObject.FindGameObjectsWithTag("GameController").OrderBy(w => w.GetComponent<DebugDrawCircleRange>().Id).ToList();
+        var waypointParent = GameObject.FindGameObjectWithTag("GameController");
+        for (int i = 0; i < waypointParent.transform.childCount; i++)
+        {
+            Debug.Log(i);
+            waypoints.Add(waypointParent.transform.GetChild(i).gameObject);
+        }
     }
 
     void Update()
@@ -103,17 +111,10 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.TutorialAutoSwerveCorrect:
 
-                if ((transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y)/*Converted degrees*/
-                    < rotationWhenStartedSwerving + tutorialAutoSwerveRotationAmount)
+                transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
+                if (CheckIfReachedWaypoint())
                 {
-                    transform.Rotate(0f, swerveRotationDefaultAmount * tutorialAutoSwerveCorrectionMultiplier/*anti-swerve force*/, 0f);
-                }
-                else
-                {
-                    if (CheckIfReachedWaypoint())
-                    {
-                        DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
-                    }
+                    DialogueNodeManager.instance.StartDialogue("TutorialSwerving");
                 }
 
                 break;
@@ -138,7 +139,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        //DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+        
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -163,8 +164,20 @@ public class DrunkAIMovement : MonoBehaviour
 
         transform.Rotate(0f, rotationAmount, 0f);
 
-        if (transform.rotation.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
+        if (transform.localEulerAngles.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
         {
+            switch (state)
+            {
+                case MovementState.TutorialManualSwerve:
+                    DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+                    break;
+                case MovementState.Swerving:
+                    DialogueNodeManager.instance.StartDialogue("SwervingEnd");
+                    break;
+                default:
+                    break;
+            }
+
             SetState(MovementState.PassengerControl);
         }
     }
@@ -202,7 +215,7 @@ public class DrunkAIMovement : MonoBehaviour
                 //    SetState(MovementState.TrafficLight);
                 //    trafficLightInRange.GetComponent<TrafficLightController>().ChangeSignal(TrafficLightSignal.Red);
                 //}
-                
+
                 break;
             case MovementState.TutorialAutoSwerve:
 
@@ -221,17 +234,10 @@ public class DrunkAIMovement : MonoBehaviour
 
                 break;
             case MovementState.PassengerControl:
+                HandlePlayerInput();
 
                 HandlePlayerInput();
-                if (CheckIfReachedWaypoint()) { 
-                    switch (DialogueNodeManager.instance.GetCurrentNode())
-                    {
-                        case "TutorialSwerving":
-                            DialogueNodeManager.instance.StartDialogue("TutorialEnd");
-                            break;
-                    }
-                }
-
+                CheckIfReachedWaypoint();
                 break;
             case MovementState.Accelerating:
 
@@ -313,7 +319,15 @@ public class DrunkAIMovement : MonoBehaviour
             currentWaypointToFollowData = currentWaypointToFollow.GetComponent<DebugDrawCircleRange>();
             waypoints.RemoveAt(0);
         }
-        transform.LookAt(currentWaypointToFollow.transform);
+        //transform.LookAt(currentWaypointToFollow.transform);
+
+        // Calculate the direction to the target
+        Vector3 direction = currentWaypointToFollow.transform.position - transform.position;
+        // Calculate the target rotation using the direction vector
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        // Smoothly rotate towards the target rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
 
         if (Vector3.Magnitude(transform.position - currentWaypointToFollow.transform.position) < currentWaypointToFollowData.Radius)
         {
@@ -349,10 +363,10 @@ public class DrunkAIMovement : MonoBehaviour
                 rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
                 break;
             case MovementState.TutorialManualSwerve:
-                rotationWhenStartedSwerving = transform.rotation.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y;
                 break;
             case MovementState.Swerving:
-                rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+                rotationWhenStartedSwerving = transform.localEulerAngles.y;
                 break;
             case MovementState.TrafficLight:
                 moveSpeed = moveSpeedWhenDecelerating;
