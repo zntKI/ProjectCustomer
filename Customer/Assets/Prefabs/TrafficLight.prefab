@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e96e96c409b6f74285fcdcccc3ccb31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 200
-  timeRedLightSec: 5
+  timeRedLightSec: 30
   greenMat: {fileID: 2100000, guid: a777df4183b56404facf1dfc490514e0, type: 2}
   redMat: {fileID: 2100000, guid: 730139b74e8450245a4801ae7a9747a2, type: 2}

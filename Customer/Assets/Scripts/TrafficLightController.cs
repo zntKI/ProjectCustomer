@@ -7,10 +7,6 @@ public class TrafficLightController : MonoBehaviour
 {
     public static event Action OnSignalChangeBackToGreen;
 
-    public float Range => detectionRange;
-
-    [SerializeField]
-    float detectionRange = 100f;
     [SerializeField]
     float timeRedLightSec = 5f;
 
