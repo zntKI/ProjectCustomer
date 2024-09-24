@@ -121,6 +121,7 @@ You: Buzzed driving is drunk driving, man. You can't even stop in time. #line:Vo
 Friend: I've got it. It's not like I'm totally drunk or anything. #line:Voice47
 You: Doesn't matter. If you're reacting this late, you're not as in control as you think. #line:Voice48
 
+<<spawnStopSign Car>>
 <<setState Car 11>> //Spawn traffic light
 
 <<jump TrafficLightStart>>
