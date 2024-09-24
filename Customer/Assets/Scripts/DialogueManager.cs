@@ -49,16 +49,20 @@ public class DialogueManager : DialogueViewBase
             Button buttonComponent = newButton.GetComponent<Button>();
             TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
             BoxCollider collider = newButton.GetComponent<BoxCollider>();
-            RectTransform rectTransform = optionsContainer.GetComponentInChildren<RectTransform>();
+            RectTransform containerRectTransform = optionsContainer.GetComponentInChildren<RectTransform>();
+            RectTransform buttonRectTransform = newButton.GetComponentInChildren<RectTransform>();
 
             // Set the button text to the dialogue option's text
             buttonText.text = " ->     " + option.Line.Text.Text;
 
-            //set collider size
-            float optionWidth = rectTransform.rect.width;
-            collider.size = new Vector3(optionWidth, collider.size.y, collider.size.z);
-            collider.center = new Vector3(optionWidth / 2 - 200, 0, 0);
             
+
+            //set collider size
+            float optionWidth = containerRectTransform.rect.width;
+            collider.size = new Vector3(optionWidth, collider.size.y, collider.size.z);
+            collider.center = new Vector3(200, 0, 0);
+
+
             // Add an event listener to handle button clicks
             int optionIndex = option.DialogueOptionID;
             buttonComponent.onClick.AddListener(() => {
