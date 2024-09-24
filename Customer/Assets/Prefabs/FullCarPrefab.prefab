@@ -744,7 +744,7 @@ ParentConstraint:
   m_TranslationAtRest: {x: 0.392, y: 1.114, z: -0.41}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: 0.3919983, y: 1.114, z: -0.4100113}
+  - {x: 0.3919983, y: 1.114, z: -0.40999603}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
@@ -786,7 +786,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5565100964548095320}
   m_LocalRotation: {x: 0.025819475, y: -0.060849722, z: -0.0066412645, w: 0.9977909}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4719938}
+  m_LocalPosition: {x: 0, y: 0, z: 0.47199607}
   m_LocalScale: {x: 0.00048188595, y: 0.00048188595, z: 0.00048188595}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -795,7 +795,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 2.907, y: -7.004, z: -0.941}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.2850012, y: 1.236}
+  m_AnchoredPosition: {x: 0.2849954, y: 1.236}
   m_SizeDelta: {x: 1919.9999, y: 1935.3447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6788418136838370435
@@ -931,12 +931,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7824785408104749401}
-  - component: {fileID: 4003992633596095542}
   - component: {fileID: 1855090593668164485}
   - component: {fileID: 2325797095883474402}
   - component: {fileID: 6952857889223980434}
   - component: {fileID: 4237432126111656078}
   - component: {fileID: 5460105262588479041}
+  - component: {fileID: 4003992633596095542}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -959,20 +959,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8379112149038939465}
   m_LocalEulerAnglesHint: {x: 2.907, y: -17.938, z: -0.941}
---- !u!114 &4003992633596095542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6226612002174434129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0a164e8767ff2499ffa1588371889c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraDuration: 0.5
-  cameraStrength: 0.5
 --- !u!20 &1855090593668164485
 Camera:
   m_ObjectHideFlags: 0
@@ -1126,6 +1112,20 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &4003992633596095542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226612002174434129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0a164e8767ff2499ffa1588371889c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraDuration: 0.5
+  cameraStrength: 0.5
 --- !u!1 &7094870607103588772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,6 +1446,11 @@ MonoBehaviour:
   tutorialManualSwerveMultiplier: -1.5
   normalSwerveMultiplier: -2
   playerTurnAmount: 2
+  trafficLightPrefab: {fileID: 0}
+  distanceAheadForSpawn: 200
+  spawnPositionOffsetToTheRight: 5
+  timeForReactionSecStopLight: 4
+  stopDistanceFromStopLight: 10
 --- !u!4 &1060185437743464949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: eca2e4fa9f3d58440aba946d58762984, type: 3}
