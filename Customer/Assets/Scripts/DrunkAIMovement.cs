@@ -371,6 +371,7 @@ public class DrunkAIMovement : MonoBehaviour
                 HandleWaypointFollowing();
 
                 moveSpeed -= deccelerationAmountBeforeTrafficLight * Time.deltaTime;
+                moveSpeed = Mathf.Clamp(moveSpeed, 0, targetMoveSpeed);
                 
                 break;
             default:
