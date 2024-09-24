@@ -1,4 +1,5 @@
 using EasyRoads3Dv3;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +87,11 @@ public class DrunkAIMovement : MonoBehaviour
     GameObject spawnedTrafficLight;
     GameObject trafficLightWaypoint;
     float deccelerationAmountBeforeTrafficLight = 0f;
+
+
+    // Events
+    public static event Action OnStartCarPlaySound;
+    public static event Action OnSwervePlaySound;
 
     private void Awake()
     {
@@ -454,14 +460,20 @@ public class DrunkAIMovement : MonoBehaviour
     {
         switch (state)
         {
+            case MovementState.Start:
+                OnStartCarPlaySound?.Invoke();
+                break;
             case MovementState.TutorialAutoSwerve:
                 rotationWhenStartedSwerving = transform.localEulerAngles.y >= 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+                OnSwervePlaySound?.Invoke();
                 break;
             case MovementState.TutorialManualSwerve:
                 rotationWhenStartedSwerving = transform.localEulerAngles.y;
+                OnSwervePlaySound?.Invoke();
                 break;
             case MovementState.Swerving:
                 rotationWhenStartedSwerving = transform.localEulerAngles.y;
+                OnSwervePlaySound?.Invoke();
                 break;
             case MovementState.TrafficLight:
                 spawnedTrafficLight.GetComponent<TrafficLightController>().ChangeSignal(TrafficLightSignal.Red);
