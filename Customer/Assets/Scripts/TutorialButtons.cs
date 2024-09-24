@@ -6,22 +6,30 @@ using Yarn.Unity;
 
 public class TutorialButtons : MonoBehaviour
 {
-    static Image DKey;
+    [SerializeField] Image DKey;
+    [SerializeField] Image SKey;
 
-    private void Awake()
-    {
-        DKey = GetComponent<Image>();
-    }
-
-    [YarnCommand("enableTutorialImage")]
-    public static void EnableImage()
+    [YarnCommand("enableDKey")]
+    public void EnableDKey()
     {
         DKey.enabled = true;
     }
 
-    [YarnCommand("disableTutorialImage")]
-    public static void DisableImage()
+    [YarnCommand("disableDKey")]
+    public  void DisableDKey()
     {
         DKey.enabled = false;
+    }
+
+    [YarnCommand("enableSKey")]
+    public void EnableSKey()
+    {
+        SKey.enabled = true;
+    }
+
+    [YarnCommand("disableSKey")]
+    public void DisableSKey()
+    {
+        SKey.enabled = false;
     }
 }
