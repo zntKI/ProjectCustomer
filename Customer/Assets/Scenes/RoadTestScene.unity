@@ -37242,6 +37242,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3983218635195244738, guid: ca1e1b0d4ae24fb4f9c2767838aee8f4, type: 3}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: normalSwerveMultiplier
+      value: -0.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: moveSpeedIncreaseAmount
       value: 1
       objectReference: {fileID: 0}
@@ -37255,7 +37259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialManualSwerveMultiplier
-      value: -7
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: speedAcceleratingDecreaseAmount
