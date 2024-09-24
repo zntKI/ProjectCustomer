@@ -29,10 +29,6 @@ public class DrunkAIMovement : MonoBehaviour
     [SerializeField]
     float speedAcceleratingDecreaseAmount = 15f;
 
-    [Header("Stop light")]
-    [SerializeField]
-    float moveSpeedWhenDecelerating = 45f;
-
     [Header("Swerving")]
     [SerializeField]
     float swerveRotationDefaultAmount = 0.1f;
@@ -53,14 +49,18 @@ public class DrunkAIMovement : MonoBehaviour
     [SerializeField]
     GameObject trafficLightPrefab; // The object you want to spawn
     [SerializeField]
-    float distanceAheadForSpawn = 200f; // Distance ahead from the car in meters
+    float trafficLightDistanceForSpawn = 200f; // Distance ahead from the car in meters
     [SerializeField]
-    float spawnPositionOffsetToTheRight = 5f;
+    float trafficLightOffsetToTheRight = 5f;
     [SerializeField]
     float timeForReactionSecStopLight = 4f;
     [SerializeField]
     float stopDistanceFromStopLight = 10f;
 
+    [Header("StopSign")]
+    [SerializeField] GameObject stopSignPrefab;
+    [SerializeField] float stopSignDistanceForSpawn = 50;
+    [SerializeField] float stopSignOffsetToTheRight = 5f;
 
     MovementState state;
     Rigidbody rb;
@@ -106,7 +106,6 @@ public class DrunkAIMovement : MonoBehaviour
         var waypointParent = GameObject.FindGameObjectWithTag("GameController");
         for (int i = 0; i < waypointParent.transform.childCount; i++)
         {
-            Debug.Log(i);
             waypoints.Add(waypointParent.transform.GetChild(i).gameObject);
         }
     }
@@ -117,7 +116,6 @@ public class DrunkAIMovement : MonoBehaviour
         Debug.Log($"{state}");
         HandleState();
     }
-
 
     void FixedUpdate()
     {
@@ -315,29 +313,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.SpawnTrafficLight:
 
-                Vector3 spawnPosition = Vector3.zero;
-                Quaternion spawnRotation = Quaternion.identity;
-
-                float distanceCounter = 0f;
-                for (int i = 0; i < waypoints.Count; i++)
-                {
-                    var waypoint = waypoints[i];
-
-                    distanceCounter += waypoint.GetComponent<DebugDrawCircleRange>().Radius * 2;
-                    if (distanceCounter >= distanceAheadForSpawn)
-                    {
-                        spawnPosition = waypoint.transform.position + waypoint.transform.right * (spawnPositionOffsetToTheRight + trafficLightPrefab.transform.lossyScale.z / 2);
-
-                        Quaternion rotationOffset = Quaternion.Euler(0, 90, 0);
-                        spawnRotation = waypoint.transform.rotation * rotationOffset;
-
-                        trafficLightWaypoint = waypoint;
-
-                        break;
-                    }
-                }
-
-                spawnedTrafficLight = Instantiate(trafficLightPrefab, spawnPosition, spawnRotation);
+                spawnedTrafficLight = SpawnPrefab(trafficLightPrefab, trafficLightDistanceForSpawn, trafficLightOffsetToTheRight);
                 SetState(MovementState.Normal);
 
                 break;
@@ -492,6 +468,40 @@ public class DrunkAIMovement : MonoBehaviour
     void OnDestroy()
     {
         TrafficLightController.OnSignalChangeBackToGreen -= StartMovingAgain;
+    }
+
+    [YarnCommand("spawnStopSign")]
+    public void SpawnStopSign()
+    {
+        SpawnPrefab(stopSignPrefab, stopSignDistanceForSpawn, stopSignOffsetToTheRight);
+    }
+
+    GameObject SpawnPrefab(GameObject prefab, float distanceAhead, float offset)
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        Quaternion spawnRotation = Quaternion.identity;
+
+        float distanceCounter = 0f;
+        for (int i = 0; i < waypoints.Count; i++)
+        {
+            var waypoint = waypoints[i];
+
+            distanceCounter += waypoint.GetComponent<DebugDrawCircleRange>().Radius * 2;
+            if (distanceCounter >= distanceAhead)
+            {
+                //spawnPosition = waypoint.transform.position + waypoint.transform.right * (offset + prefab.transform.lossyScale.z / 2);
+                spawnPosition = waypoint.transform.position + -1 * waypoint.transform.forward * (offset + prefab.transform.lossyScale.z / 2);
+
+                Quaternion rotationOffset = Quaternion.Euler(0, 0, 0);
+                spawnRotation = waypoint.transform.rotation * rotationOffset;
+
+                trafficLightWaypoint = waypoint;
+
+                break;
+            }
+        }
+
+        return Instantiate(prefab, spawnPosition, spawnRotation);
     }
 }
 

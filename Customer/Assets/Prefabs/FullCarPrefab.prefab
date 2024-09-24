@@ -837,8 +837,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5467830759624406379}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.392, y: 1.114, z: -0.41}
+  m_LocalRotation: {x: -0, y: 0.00000009362675, z: -0, w: 1}
+  m_LocalPosition: {x: 0.39198956, y: 1.114, z: -0.40997916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -855,10 +855,10 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: 0.392, y: 1.114, z: -0.41}
+  m_TranslationAtRest: {x: 0.39198956, y: 1.114, z: -0.40997916}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: 0.3919983, y: 1.114, z: -0.40999603}
+  - {x: 0.39198303, y: 1.114, z: -0.40997314}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   optionsContainer: {fileID: 8556159078597073225}
   lastLine: {fileID: 7525553316265805965}
   buttonPrefab: {fileID: 1347894530585652524, guid: e2acf4af75b2ef248a47a7abf75fd589, type: 3}
-  progressDelay: 2
+  dialogueAutoProgressTime: 5
 --- !u!1 &8292636776158287633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,7 +1552,6 @@ MonoBehaviour:
   speedAcceleratingIncreaseAmount: 10
   timeForReactionSecAccelerating: 4
   speedAcceleratingDecreaseAmount: 15
-  moveSpeedWhenDecelerating: 10
   swerveRotationDefaultAmount: 0.1
   tutorialAutoSwerveMultiplier: -1
   tutorialAutoSwerveRotationAmount: 20
@@ -1560,11 +1559,14 @@ MonoBehaviour:
   tutorialManualSwerveMultiplier: -1.5
   normalSwerveMultiplier: -2
   playerTurnAmount: 2
-  trafficLightPrefab: {fileID: 0}
-  distanceAheadForSpawn: 200
-  spawnPositionOffsetToTheRight: 5
+  trafficLightPrefab: {fileID: 3983218635195244738, guid: ca1e1b0d4ae24fb4f9c2767838aee8f4, type: 3}
+  trafficLightDistanceForSpawn: 200
+  trafficLightOffsetToTheRight: 5
   timeForReactionSecStopLight: 4
   stopDistanceFromStopLight: 10
+  stopSignPrefab: {fileID: 5709733655079756965, guid: ec7ae143c47bcb540910d6dc49da4f4a, type: 3}
+  stopSignDistanceForSpawn: 50
+  stopSignOffsetToTheRight: 5
 --- !u!4 &1060185437743464949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: eca2e4fa9f3d58440aba946d58762984, type: 3}
