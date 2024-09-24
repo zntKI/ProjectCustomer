@@ -158,7 +158,7 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
         }
 
-        
+
         rb.velocity = transform.forward * moveSpeed;
     }
 
@@ -271,7 +271,12 @@ public class DrunkAIMovement : MonoBehaviour
                 timeForReactionSecAcceleratingCounter += Time.deltaTime;
                 if (timeForReactionSecAcceleratingCounter >= timeForReactionSecAccelerating)
                 {
-                    EditorApplication.isPlaying = false;//Game over
+#if UNITY_EDITOR
+                    EditorApplication.isPlaying = false;
+#else
+        // For quitting the built application
+        Application.Quit();
+#endif
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
@@ -337,7 +342,12 @@ public class DrunkAIMovement : MonoBehaviour
                 timeForReactionSecStopLightCounter += Time.deltaTime;
                 if (timeForReactionSecStopLightCounter >= timeForReactionSecStopLight)
                 {
-                    EditorApplication.isPlaying = false;//Game over
+#if UNITY_EDITOR
+                    EditorApplication.isPlaying = false;
+#else
+        // For quitting the built application
+        Application.Quit();
+#endif
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
@@ -372,7 +382,7 @@ public class DrunkAIMovement : MonoBehaviour
 
                 moveSpeed -= deccelerationAmountBeforeTrafficLight * Time.deltaTime;
                 moveSpeed = Mathf.Clamp(moveSpeed, 0, targetMoveSpeed);
-                
+
                 break;
             default:
                 break;
