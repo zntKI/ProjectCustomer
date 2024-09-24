@@ -55,8 +55,6 @@ public class DialogueManager : DialogueViewBase
             // Set the button text to the dialogue option's text
             buttonText.text = " ->     " + option.Line.Text.Text;
 
-            
-
             //set collider size
             float optionWidth = containerRectTransform.rect.width;
             collider.size = new Vector3(optionWidth, collider.size.y, collider.size.z);
