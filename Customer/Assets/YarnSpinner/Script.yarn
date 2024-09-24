@@ -1,4 +1,4 @@
-﻿title: Intro
+title: Intro
 tags:
 position: 81,-384
 ---
@@ -35,14 +35,14 @@ position: -404,45
 ---
 You: Uh, you're kinda swerving a bit. #line:Voice11
 Friend: I got it! I got it. Just gotta... focus. No worries. #line:Voice12
-<<enableTutorialImage>>
+<<enableDKey TutorialKeys>>
 <<setState Car 5>> //Start car swerving
 ===
 
 title: TutorialEnd
 position: -403,246
 ---
-<<disableTutorialImage>>
+<<disableDKey TutorialKeys>>
 You: That didn't feel like just being tired. Are you sure you're okay? #line:Voice13
 Friend: I told you, man, I'm fine! It's nothing serious. #line:Voice14
 <<jump SpeedingStart>>
@@ -143,12 +143,14 @@ Friend: I only had a few drinks. It's not like I'm plastered. A little buzz does
         Friend: I've driven buzzed before, it's nothing new. #line:Voice58
         You: Maybe you've gotten away with it, but that doesn't mean you're safe. Buzzed driving is dangerous. #line:Voice59
     
+    <<enableSKey TutorialKeys>>
     <<setState Car 12>> //Traffic Light game
 ===
 
 title: TrafficLightEnd
 position: 457,38
 ---
+<<disableSKey TutorialKeys>>
 Friend: That light came up faster than I thought. #line:voiceP40
 You: Exactly! You're slowing down mentally. You need to stop. #line:voiceP39
     -> Let's stop this before it gets worse.
