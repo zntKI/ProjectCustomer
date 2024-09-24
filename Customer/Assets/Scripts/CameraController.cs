@@ -8,10 +8,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform car;
 
     [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] private float minVertAngle = 0f;
+    [SerializeField] private float minVertAngle = -10f;
     [SerializeField] private float maxVertAngle = 30f;
-    [SerializeField] private float minHorAngle = 20f;
-    [SerializeField] private float maxHorAngle = 310f;
+    [SerializeField] private float minHorAngle = 50f;
+    [SerializeField] private float maxHorAngle = 130f;
 
     private void Start()
     {
@@ -31,30 +31,33 @@ public class CameraController : MonoBehaviour
         float newVertRotation = oldVertRotation + verticalRotation;
 
         // clamp vertical rotation
-        newVertRotation = Mathf.Clamp(newVertRotation, minVertAngle, maxVertAngle);
+        newVertRotation = ClampAngle(newVertRotation, minVertAngle, maxVertAngle);
         verticalRotation = newVertRotation - oldVertRotation;
         
         float oldHorRotation = transform.rotation.eulerAngles.y;
         float newHorRotation = oldHorRotation + horizontalRotation;
 
-        //// clamp horizontal rotation
-        //// clamp between 310-360 or 0-50
-        //if (newHorRotation > minHorAngle && newHorRotation < maxHorAngle)
-        //{
-        //    // if the new rotation is outside of both ranges, choose the closest limit
-        //    if (oldHorRotation <= minHorAngle)
-        //    {
-        //        newHorRotation = minHorAngle - 0.1f;  // Stay within the lower range
-        //    }
-        //    else if (oldHorRotation >= maxHorAngle)
-        //    {
-        //        newHorRotation = maxHorAngle + 0.1f;  // Stay within the upper range
-        //    }
-        //}
-        
+        newHorRotation = ClampAngle(newHorRotation, minHorAngle, maxHorAngle);
         horizontalRotation = newHorRotation - oldHorRotation;
 
         transform.Rotate(Vector3.up, horizontalRotation, Space.World);
         transform.Rotate(Vector3.right, verticalRotation);
+    }
+
+
+    //Clamps angle between two values
+    //Accounts for negative degrees
+    private float ClampAngle(float angle, float minRotation, float maxRotation)
+    {
+        float tempAngle = angle > 180 ? angle - 360 : angle;
+
+        tempAngle = Mathf.Clamp(tempAngle, minRotation, maxRotation);
+
+        if(tempAngle < 0)
+        {
+            tempAngle += 360;
+        }
+
+        return tempAngle;
     }
 }

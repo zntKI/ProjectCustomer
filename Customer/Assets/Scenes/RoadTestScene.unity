@@ -37201,8 +37201,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 184729159}
     - target: {fileID: 4237432126111656078, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: maxHorAngle
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237432126111656078, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: minHorAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237432126111656078, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: maxVertAngle
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237432126111656078, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: minVertAngle
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4627850207145068073, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_LocalPosition.x
