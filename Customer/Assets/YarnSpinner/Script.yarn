@@ -2,9 +2,10 @@
 tags:
 position: 81,-384
 ---
-Friend: Hey, sorry for being late. Hop in.
-        -> No worries, man. Thanks for coming.
-Friend: Let's get out of here.
+Friend: Hey, sorry for being late. Hop in. #line:Voice1
+        -> No worries, man. 
+            You: No worries, man. Thanks for coming. #line:Voice2
+Friend: Let's get out of here. #line:Voice3
         -> Get in
             <<setState Car 1>> //Start car
             <<jump TutorialSetup>>
@@ -13,27 +14,27 @@ Friend: Let's get out of here.
 title: TutorialSetup
 position: -403,-143
 ---
-Friend: How was the party?
-You: It was great. Had a couple too many beers so I'm glad you came to pick me up.
-Friend: Don't worry about it.
+Friend: How was the party? #line:Voice4
+You: It was great. Had a couple too many beers so I'm glad you came to pick me up. #line:Voice5
+Friend: Don't worry about it. #line:Voice6
 <<jump TutorialStart>>
 ===
 
 title: TutorialStart
 position: -404,45
 ---
-You: Uh, you kinda blew past that stop sign back there.
-Friend: Oh, I didn't even notice. Must be zoned out from the night.
-You: Zoned out? You don't look great, man. Tired or something?
-Friend: Yeah, just tired. Don't worry about it.
+You: Uh, you kinda blew past that stop sign back there. #line:Voice7
+Friend: Oh, I didn't even notice. Must be zoned out from the night. #line:Voice8
+You: Zoned out? You don't look great, man. Tired or something? #line:Voice9
+Friend: Yeah, just tired. Don't worry about it. #line:Voice10
 <<setState Car 3>> //
 ===
 
 title: TutorialSwerving
 position: -404,45
 ---
-You: Uh, you're kinda swerving a bit.
-Friend: I got it! I got it. Just gotta... focus. No worries.
+You: Uh, you're kinda swerving a bit. #line:Voice11
+Friend: I got it! I got it. Just gotta... focus. No worries. #line:Voice12
 <<enableTutorialImage>>
 <<setState Car 5>> //Start car swerving
 ===
@@ -42,36 +43,36 @@ title: TutorialEnd
 position: -403,246
 ---
 <<disableTutorialImage>>
-You: That didn't feel like just being tired. Are you sure you're okay?
-Friend: I told you, man, I'm fine! It's nothing serious.
+You: That didn't feel like just being tired. Are you sure you're okay? #line:Voice13
+Friend: I told you, man, I'm fine! It's nothing serious. #line:Voice14
 <<jump SpeedingStart>>
 ===
 
 title: SpeedingStart
 position: -117,-145
 ---
-You: You're not fine, man. What did you do before coming?
-Friend: It was just a few beers. That's like nothing.
+You: You're not fine, man. What did you do before coming? #line:Voice15
+Friend: It was just a few beers. That's like nothing. #line:Voice16
 <<setState Car 7>> //Car starts speeding up
         -> Slow down, man.
-            You: And now you're speeding down this road like you're trying to prove something. Slow down, man.
-            Friend: It's fine. I just want to get home faster. What's the big deal?
-            You: The big deal is that you're driving buzzed. You think that's not going to mess with your reaction time?
-            Friend: I've got this under control. You're worrying too much.
+            You: And now you're speeding down this road like you're trying to prove something. Slow down, man. #line:Voice17
+            Friend: It's fine. I just want to get home faster. What's the big deal? #line:Voice18
+            You: The big deal is that you're driving buzzed. You think that's not going to mess with your reaction time? #line:Voice19
+            Friend: I've got this under control. You're worrying too much. #line:Voice20
             -> Speeding when you're buzzed is the worst idea. 
-                You: Slow down before you lose control completely.
+                You: Speeding when you're buzzed is the worst idea. Slow down before you lose control completely. #line:Voice21
                 <<setState Car 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
                 ///Crash
                 <<jump BadEnding>>
-        -> You're driving like a maniac AND you're drunk.
-            You: You're driving like a maniac AND you're drunk. Just slow down before this gets worse.
-            Friend: I'm not even going that fast. I've driven like this before.
-            You: It's not about how fast you're going—it's about how your judgment is slipping. You're putting us both in danger!
-            Friend: I'm telling you, I've got it. Just relax.
+        -> You're driving like a maniac AND you're drunk. 
+            You: You're driving like a maniac AND you're drunk. Just slow down before this gets worse. #line:Voice22
+            Friend: I'm not even going that fast. I've driven like this before. #line:Voice23
+            You: It's not about how fast you're going—it's about how your judgment is slipping. You're putting us both in danger! #line:Voice24
+            Friend: I'm telling you, I've got it. Just relax. #line:Voice25
             -> The alcohol is clouding your judgment.
-                You: You're not yourself right now. The alcohol is clouding your judgment. Slow down before it's too late.
+                You: You're not yourself right now. The alcohol is clouding your judgment. Slow down before it's too late. #line:Voice26
                 <<setState Car 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
@@ -82,30 +83,30 @@ Friend: It was just a few beers. That's like nothing.
 title: SpeedingEnd
 position: -117,43
 ---
-Friend: Whoa... that was close.
-You: You almost lost control back there! You keep saying you're fine, but I can see you're not. You're all over the place.
-Friend: I'm telling you, I've driven like this before. It's nothing I can't handle.
-You: Sure, just like your friends, right? You've seen them do it, but that doesn't mean you'll get away with it.
-Friend: They've done it plenty of times. I'm fine, trust me.
+Friend: Whoa... that was close. #line:Voice27
+You: You almost lost control back there! You keep saying you're fine, but I can see you're not. You're all over the place. #line:Voice28
+Friend: I'm telling you, I've driven like this before. It's nothing I can't handle. #line:Voice29
+You: Sure, just like your friends, right? You've seen them do it, but that doesn't mean you'll get away with it. #line:Voice30
+Friend: They've done it plenty of times. I'm fine, trust me. #line:Voice31
 <<jump SwervingStart>>
 ===
 
 title: SwervingStart
 position: 179,-155
 ---
-Friend: I've seen a bunch of my friends drive buzzed before. They're all fine. No crashes, nothing.
+Friend: I've seen a bunch of my friends drive buzzed before. They're all fine. No crashes, nothing. #line:Voice32
     -> You're swerving all over the road.
-        You: Yeah, well, you're not fine now. You're swerving all over the road like you don't even see where you're going.
-        Friend: I'm just adjusting to the road. I'm good.
-        You: Adjusting? You're steering into the other lane. Your friends might have gotten lucky, but you're asking for trouble.
-        Friend: I've seen worse, trust me. This isn't a big deal.
-        You: I don't care what your friends did. You're the one swerving right now, and that's how accidents happen.
+        You: Yeah, well, you're not fine now. You're swerving all over the road like you don't even see where you're going. #line:Voice33
+        Friend: I'm just adjusting to the road. I'm good. #line:Voice34
+        You: Adjusting? You're steering into the other lane. Your friends might have gotten lucky, but you're asking for trouble. #line:Voice35
+        Friend: I've seen worse, trust me. This isn't a big deal. #line:Voice36
+        You: I don't care what your friends did. You're the one swerving right now, and that's how accidents happen. #line:Voice37
     -> That doesn't mean you will be fine.
-        You: Your friends might've gotten away with it, but that doesn't mean you will. You're swerving everywhere.
-        Friend: I've got this. I'm just a little buzzed. I'll get us home safely.
-        You: You're already crossing into the wrong lane. Don't act like this is normal.
-        Friend: It's fine, I can handle it. They did, and so can I.
-        You: Handling it? You can't even keep the car in one lane! Your friends were lucky, but luck runs out.
+        You: Your friends might've gotten away with it, but that doesn't mean you will. You're swerving everywhere. #line:Voice38
+        Friend: I've got this. I'm just a little buzzed. I'll get us home safely. #line:Voice39
+        You: You're already crossing into the wrong lane. Don't act like this is normal. #line:Voice40
+        Friend: It's fine, I can handle it. They did, and so can I. #line:Voice41
+        You: Handling it? You can't even keep the car in one lane! Your friends were lucky, but luck runs out. #line:Voice42
     
     <<setState Car 10>> //Start car swerving
 ===
@@ -113,12 +114,12 @@ Friend: I've seen a bunch of my friends drive buzzed before. They're all fine. N
 title: SwervingEnd
 position: 179,43
 ---
-Friend: Okay, okay... maybe I'm a little off tonight.
-You: A little off? You just swerved into another lane! You think a couple of drinks aren't affecting you? 
-Friend: I didn't even see it until the last second. But it's just the buzz—it's not a big deal.
-You: Buzzed driving is drunk driving, man. You can't even stop in time.
-Friend: I've got it. It's not like I'm totally drunk or anything.
-You: Doesn't matter. If you're reacting this late, you're not as in control as you think.
+Friend: Okay, okay... maybe I'm a little off tonight. #line:Voice43
+You: A little off? You just swerved into another lane! You think a couple of drinks aren't affecting you? #line:Voice44
+Friend: I didn't even see it until the last second. But it's just the buzz—it's not a big deal. #line:Voice45
+You: Buzzed driving is drunk driving, man. You can't even stop in time. #line:Voice46
+Friend: I've got it. It's not like I'm totally drunk or anything. #line:Voice47
+You: Doesn't matter. If you're reacting this late, you're not as in control as you think. #line:Voice48
 
 <<setState Car 11>> //Spawn traffic light
 
@@ -128,19 +129,19 @@ You: Doesn't matter. If you're reacting this late, you're not as in control as y
 title: TrafficLightStart
 position: 457,-151
 ---
-Friend: I only had a few drinks. It's not like I'm plastered. A little buzz doesn't hit me that hard.
+Friend: I only had a few drinks. It's not like I'm plastered. A little buzz doesn't hit me that hard. #line:Voice49
     -> You just missed that stop sign.
-        You: You sure about that? You just missed that stop sign. Doesn't seem like you're as sharp as you think.
-        Friend: I saw it, I just misjudged the timing. It's nothing serious.
-        You: Misjudging things is exactly what buzzed driving does to you. If you can't stop in time, what's next?
-        Friend: I've got it. A couple of drinks don't change that.
-        You: If you can't even stop when you need to, those "couple of drinks" are doing more than you think.   
+        You: You sure about that? You just missed that stop sign. Doesn't seem like you're as sharp as you think. #line:Voice50
+        Friend: I saw it, I just misjudged the timing. It's nothing serious. #line:Voice51
+        You: Misjudging things is exactly what buzzed driving does to you. If you can't stop in time, what's next? #line:Voice52
+        Friend: I've got it. A couple of drinks don't change that. #line:Voice53
+        You: If you can't even stop when you need to, those "couple of drinks" are doing more than you think. #line:Voice54
     -> You're not reacting fast enough!
-        You: You think a little alcohol doesn't matter? You're not reacting fast enough, look at that stop sign you almost ran.
-        Friend: I'm fine. I saw it and stopped, didn't I?
-        You: Barely! That buzz is slowing you down. You don't even realize how much it's affecting you.
-        Friend: I've driven buzzed before, it's nothing new.
-        You: Maybe you've gotten away with it, but that doesn't mean you're safe. Buzzed driving is dangerous.
+        You: You think a little alcohol doesn't matter? You're not reacting fast enough, look at that stop sign you almost ran. #line:Voice55
+        Friend: I'm fine. I saw it and stopped, didn't I? #line:Voice56
+        You: Barely! That buzz is slowing you down. You don't even realize how much it's affecting you. #line:Voice57
+        Friend: I've driven buzzed before, it's nothing new. #line:Voice58
+        You: Maybe you've gotten away with it, but that doesn't mean you're safe. Buzzed driving is dangerous. #line:Voice59
     
     <<setState Car 12>> //Traffic Light game
 ===
@@ -148,14 +149,14 @@ Friend: I only had a few drinks. It's not like I'm plastered. A little buzz does
 title: TrafficLightEnd
 position: 457,38
 ---
-Friend: That light came up faster than I thought.
-You: Exactly! You're slowing down mentally. You need to stop.
+Friend: That light came up faster than I thought. #line:voiceP40
+You: Exactly! You're slowing down mentally. You need to stop. #line:voiceP39
     -> Let's stop this before it gets worse.
-        You: Come on, man, you're about to pass out. Let's stop this before it gets worse.
-        Friend: No, no. I'm not pulling over, we're almost home.
-        You: "You can barely keep your eyes open. You're going to lose control completely."
-        Friend: "I said I've got this! We'll be fine."
-        You: "You're not fine, and you're about to black out. Just stop before it's too late."
+        You: Come on, man, you're about to pass out. Let's stop this before it gets worse. #line:voiceP38
+        Friend: No, no. I'm not pulling over, we're almost home. #line:voiceP37
+        You: "You can barely keep your eyes open. You're going to lose control completely." #line:voiceP36
+        Friend: "I said I've got this! We'll be fine." #line:voiceP35
+        You: "You're not fine, and you're about to black out. Just stop before it's too late." #line:voiceP34
     
     <<jump ConciousnessStart>>
 ===
@@ -167,12 +168,12 @@ position: 726,-154
 <<declare $conciousness = 0>>
 
 -> Let's talk about something to keep you awake.
-    You: Come on, man. Stay with me. Let's talk about something to keep you awake.
-    Friend: Yeah... okay, I'm still here.
+    You: Come on, man. Stay with me. Let's talk about something to keep you awake. #line:voiceP33d
+    Friend: Yeah... okay, I'm still here. #line:voiceP32
     <<set $conciousness = $conciousness + 1>>
 -> Maybe we should stop for a break.
-    You: You're barely keeping your eyes open. Maybe we should stop for a break.
-    Friend: No need...
+    You: You're barely keeping your eyes open. Maybe we should stop for a break. #line:voiceP31
+    Friend: No need... #line:voiceP30
 
 <<jump ConciousnessRound2>>
 ===
@@ -180,24 +181,24 @@ position: 726,-154
 title: ConciousnessRound2
 ---
 -> Let's crank up the music.
-    You: Let's crank up the music. That'll keep you awake.
-    Friend: Good idea. I can feel the energy coming back.
+    You: Let's crank up the music. That'll keep you awake. #line:voiceP29
+    Friend: Good idea. I can feel the energy coming back. #line:voiceP28
     <<set $conciousness = $conciousness + 1>>
     ///Make music louder
 -> Seriously, let's just pull over.
-    You: Your eyes are closing. Seriously, let's just pull over.
-    Friend: I'm fine... I'll get us there.
+    You: Your eyes are closing. Seriously, let's just pull over. #line:voiceP27
+    Friend: I'm fine... I'll get us there. #line:voiceP26
 <<jump ConciousnessRound3>>
 ===
 
 title: ConciousnessRound3
 ---
 -> Can you even make it home like this?
-    You: Man, you're really out of it. Can you even make it home like this?
-    Friend: I told you... I'm good.
+    You: Man, you're really out of it. Can you even make it home like this? #line:voiceP23
+    Friend: I told you... I'm good. #line:voiceP22
 -> You remember that trip we took last summer?
-    You: You remember that trip we took last summer? Talk to me about it. What was your favorite part?
-    Friend: Oh yeah... That was a good time. Let's see…, I loved the concert, I also liked partying.
+    You: You remember that trip we took last summer? Talk to me about it. What was your favorite part? #line:voiceP25
+    Friend: Oh yeah... That was a good time. Let's see…, I loved the concert, I also liked partying. #line:voiceP24
     <<set $conciousness = $conciousness + 1>>
 
 <<jump ConciousnessRound4>>
@@ -206,54 +207,54 @@ title: ConciousnessRound3
 title: ConciousnessRound4
 ---
 -> What's on your mind right now?
-    You: Stay awake, come on! Keep talking, tell me anything—what's on your mind right now?
-    Friend: Alright, alright... I'm still here.
+    You: Stay awake, come on! Keep talking, tell me anything—what's on your mind right now? #line:voiceP17
+    Friend: Alright, alright... I'm still here. #line:voiceP16
     <<set $conciousness = $conciousness + 1>>
 -> Just admit you can’t stay awake.
-    You: You're barely talking now. Just admit you can't stay awake.
-    Friend: I... I'm fine...
+    You: You're barely talking now. Just admit you can't stay awake. #line:voiceP19
+    Friend: I... I'm fine... #line:voiceP18
 <<jump ConciousnessRound5>>
 ===
 
 title: ConciousnessRound5
 ---
 -> You're going to pass out, aren't you?
-    You: You're going to pass out, aren't you? Don't crash us, man!
-    Friend: I... no... I won't...
+    You: You're going to pass out, aren't you? Don't crash us, man! #line:voiceP15
+    Friend: I... no... I won't... #line:voiceP14
 -> Focus. We're almost there.
-    You: You can do this, man. Focus. Keep your eyes on the road, we're almost there.
-    Friend: Yeah... almost there...
+    You: You can do this, man. Focus. Keep your eyes on the road, we're almost there. #line:voiceP21
+    Friend: Yeah... almost there... #line:voiceP20
     <<set $conciousness = $conciousness + 1>>
 
 <<if $conciousness < 3>>
     ///Crash
     <<jump BadEnding>>
 <<else>>
-    Friend: Thanks for keeping me awake, man. I don't know what would've happened otherwise.
+    Friend: Thanks for keeping me awake, man. I don't know what would've happened otherwise. #line:voiceP13
     <<jump NeutralEnding>>
 <<endif>>
 ===
 
 title: NeutralEnding
 ---
-You: Okay, we made it through the worst of it. You've got to pull over. We can't keep going like this.
-Friend: Fine... I'll stop soon.
+You: Okay, we made it through the worst of it. You've got to pull over. We can't keep going like this. #line:voiceP12
+Friend: Fine... I'll stop soon. #line:voiceP11
 ///Play siren sounds
-You: The police are behind us.
-Friend: Oh no...
-You: This is probably the best outcome...
+You: The police are behind us. #line:voiceP10
+Friend: Oh no... #line:voiceP9
+You: This is probably the best outcome... #line:voiceP8
 ///Police stop you
 ===
 
 title: BadEnding
 ---
-You: Oh my God! Are you okay? We just crashed!
-Friend: I…I didn't see that coming. What just happened?
-You: What just happened? We could've been killed! You weren't focused, and you were driving buzzed!
-Friend: I thought I was fine…
-You: No, you weren't! You never are when you've been drinking. 
-You: This could've been way worse. You could have hurt someone—or worse, ourselves.
-Friend: I didn't think it'd get this bad.
-You: One drink is all it takes. Buzzed driving is just as dangerous. You can't take that risk.
+You: Oh my God! Are you okay? We just crashed! #line:voiceP7
+Friend: I…I didn't see that coming. What just happened? #line:voiceP6
+You: What just happened? We could've been killed! You weren't focused, and you were driving buzzed! #line:voiceP5
+Friend: I thought I was fine… #line:voiceP4
+You: No, you weren't! You never are when you've been drinking. #line:voiceP3
+You: This could've been way worse. You could have hurt someone—or worse, ourselves. 
+Friend: I didn't think it'd get this bad. #line:voiceP2
+You: One drink is all it takes. Buzzed driving is just as dangerous. You can't take that risk. #line:voiceP1
 ///Crash
 ===

@@ -21,7 +21,7 @@ public class DialogueNodeManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) {
-            dialogueRunner.StartDialogue("Intro");
+            dialogueRunner.StartDialogue("TrafficLightEnd");
         }
     }
 
