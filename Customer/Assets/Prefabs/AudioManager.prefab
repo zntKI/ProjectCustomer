@@ -44,11 +44,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4095472962392440181, guid: 06cfc50e5b29d084f9a527662e8cd83b, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 920a0c4b77287604da262c7e5a378401, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -142,7 +142,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7407405121499304776, guid: 06cfc50e5b29d084f9a527662e8cd83b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -239,3 +239,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 06cfc50e5b29d084f9a527662e8cd83b, type: 2}
+  audioSourceBG: {fileID: 0}
+  bgMusicSound: {fileID: 0}
+  audioSourceSFX: {fileID: 7468957254215412404}
+  engineStartUpSound: {fileID: 8300000, guid: 2da4992f62324d64691f1b8644d62b9e, type: 3}
+  tireSqueekingSound: {fileID: 8300000, guid: 6b3781b834ecfb44bb659b0be5c3eb2e, type: 3}
+  honkSounds:
+  - {fileID: 8300000, guid: 5ba7542e512383e49a60cd2cd83eb4d9, type: 3}
+  - {fileID: 8300000, guid: c45bfc28178f7e94d8c10cd943ce3cf3, type: 3}
+  - {fileID: 8300000, guid: 802478a2b5d90d642af0a44ed3ee2196, type: 3}
