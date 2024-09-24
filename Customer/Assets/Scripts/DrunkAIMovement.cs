@@ -52,9 +52,13 @@ public class DrunkAIMovement : MonoBehaviour
     [SerializeField]
     GameObject trafficLightPrefab; // The object you want to spawn
     [SerializeField]
-    float distanceAheadForSpawn = 50f; // Distance ahead from the car in meters
+    float distanceAheadForSpawn = 200f; // Distance ahead from the car in meters
     [SerializeField]
     float spawnPositionOffsetToTheRight = 5f;
+    [SerializeField]
+    float timeForReactionSecStopLight = 4f;
+    [SerializeField]
+    float stopDistanceFromStopLight = 10f;
 
 
     MovementState state;
@@ -76,6 +80,12 @@ public class DrunkAIMovement : MonoBehaviour
     bool isTryingToCorrectSwerve;
     int swerveCorrectionInputValue;
     float rotationWhenStartedSwerving;
+
+    //StopLight vars
+    float timeForReactionSecStopLightCounter = 0f;
+    GameObject spawnedTrafficLight;
+    GameObject trafficLightWaypoint;
+    float deccelerationAmountBeforeTrafficLight = 0f;
 
     private void Awake()
     {
@@ -302,7 +312,7 @@ public class DrunkAIMovement : MonoBehaviour
                 {
                     var waypoint = waypoints[i];
 
-                    distanceCounter += waypoint.GetComponent<DebugDrawCircleRange>().Radius;
+                    distanceCounter += waypoint.GetComponent<DebugDrawCircleRange>().Radius * 2;
                     if (distanceCounter >= distanceAheadForSpawn)
                     {
                         spawnPosition = waypoint.transform.position + waypoint.transform.right * (spawnPositionOffsetToTheRight + trafficLightPrefab.transform.lossyScale.z / 2);
@@ -310,19 +320,58 @@ public class DrunkAIMovement : MonoBehaviour
                         Quaternion rotationOffset = Quaternion.Euler(0, 90, 0);
                         spawnRotation = waypoint.transform.rotation * rotationOffset;
 
+                        trafficLightWaypoint = waypoint;
+
                         break;
                     }
                 }
 
-                Instantiate(trafficLightPrefab, spawnPosition, spawnRotation);
+                spawnedTrafficLight = Instantiate(trafficLightPrefab, spawnPosition, spawnRotation);
                 SetState(MovementState.Normal);
 
                 break;
             case MovementState.TrafficLight:
-                if (Input.GetKeyDown(KeyCode.S))
+
+                HandleWaypointFollowing();
+
+                timeForReactionSecStopLightCounter += Time.deltaTime;
+                if (timeForReactionSecStopLightCounter >= timeForReactionSecStopLight)
                 {
-                    moveSpeed = 0f;
+                    EditorApplication.isPlaying = false;//Game over
                 }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    float distanceFromStopLightCounter = 0f;
+
+                    int waypointIndex = waypoints.IndexOf(trafficLightWaypoint);
+                    for (int i = waypointIndex; i >= 0; i--)
+                    {
+                        distanceFromStopLightCounter += waypoints[i].GetComponent<DebugDrawCircleRange>().Radius * 2;
+                        if (distanceFromStopLightCounter >= stopDistanceFromStopLight)
+                        {
+                            float distanceToCompleteStop = 0f;
+                            for (int j = i - 1; j >= 0; j--)
+                            {
+                                distanceToCompleteStop += waypoints[i].GetComponent<DebugDrawCircleRange>().Radius * 2;
+                            }
+
+                            deccelerationAmountBeforeTrafficLight = (moveSpeed * moveSpeed) / (2 * distanceToCompleteStop);
+
+                            break;
+                        }
+                    }
+
+                    SetState(MovementState.DecceleratingBeforeStopLight);
+                    timeForReactionSecAcceleratingCounter = 0;
+                }
+
+                break;
+            case MovementState.DecceleratingBeforeStopLight:
+
+                HandleWaypointFollowing();
+
+                moveSpeed -= deccelerationAmountBeforeTrafficLight * Time.deltaTime;
+                
                 break;
             default:
                 break;
@@ -404,7 +453,7 @@ public class DrunkAIMovement : MonoBehaviour
                 rotationWhenStartedSwerving = transform.localEulerAngles.y;
                 break;
             case MovementState.TrafficLight:
-                moveSpeed = moveSpeedWhenDecelerating;
+                spawnedTrafficLight.GetComponent<TrafficLightController>().ChangeSignal(TrafficLightSignal.Red);
                 break;
             default:
                 break;
@@ -414,6 +463,7 @@ public class DrunkAIMovement : MonoBehaviour
     void StartMovingAgain()
     {
         SetState(MovementState.Start);
+        DialogueNodeManager.instance.StartDialogue("TrafficLightEnd");
     }
 
     void OnDestroy()
@@ -437,7 +487,8 @@ public enum MovementState
     DecceleratingAfterAccelerating,
     Swerving,
     SpawnTrafficLight,
-    TrafficLight
+    TrafficLight,
+    DecceleratingBeforeStopLight
 }
 
 /*

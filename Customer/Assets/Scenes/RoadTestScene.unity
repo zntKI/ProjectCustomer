@@ -37242,12 +37242,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3983218635195244738, guid: ca1e1b0d4ae24fb4f9c2767838aee8f4, type: 3}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: distanceAheadForSpawn
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: moveSpeedIncreaseAmount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: speedMaxWhenAccelerating
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: stopDistanceFromStopLight
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialAutoSwerveMultiplier
