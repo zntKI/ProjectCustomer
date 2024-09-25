@@ -116,7 +116,7 @@ MonoBehaviour:
   trafficLightOffsetToTheRight: 5
   timeForReactionSecStopLight: 4
   stopDistanceFromStopLight: 10
-  stopSignPrefab: {fileID: 5709733655079756965, guid: ec7ae143c47bcb540910d6dc49da4f4a, type: 3}
+  stopSignPrefab: {fileID: 1001444677436267089, guid: 4e9b5c81808f40d41b0b925399697216, type: 3}
   stopSignDistanceForSpawn: 50
   stopSignOffsetToTheRight: 5
 --- !u!1001 &444189213004793352
