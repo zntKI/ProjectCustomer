@@ -68,6 +68,8 @@ public class DrunkAIMovement : MonoBehaviour
     //Current move speed
     float moveSpeed;
 
+    public static event Action<float> onMovespeedChange;
+
     //Waypoints vars
     List<GameObject> waypoints = new List<GameObject>();
 
@@ -225,6 +227,8 @@ public class DrunkAIMovement : MonoBehaviour
                     SetState(MovementState.Normal);
                 }
 
+                onMovespeedChange?.Invoke(moveSpeed);
+
                 break;
             case MovementState.Normal:
 
@@ -269,6 +273,8 @@ public class DrunkAIMovement : MonoBehaviour
                 moveSpeed += speedAcceleratingIncreaseAmount * Time.deltaTime;
                 moveSpeed = Mathf.Clamp(moveSpeed, targetMoveSpeed, speedMaxWhenAccelerating);
 
+                onMovespeedChange?.Invoke(moveSpeed);
+
                 break;
             case MovementState.WaitingToStartDecceleratingAfterAccelerating:
 
@@ -303,6 +309,8 @@ public class DrunkAIMovement : MonoBehaviour
                 {
                     SetState(MovementState.Normal);
                 }
+
+                onMovespeedChange?.Invoke(moveSpeed);
 
                 break;
             case MovementState.Swerving:
@@ -364,6 +372,8 @@ public class DrunkAIMovement : MonoBehaviour
 
                 moveSpeed -= deccelerationAmountBeforeTrafficLight * Time.deltaTime;
                 moveSpeed = Mathf.Clamp(moveSpeed, 0, targetMoveSpeed);
+
+                onMovespeedChange?.Invoke(moveSpeed);
 
                 break;
             default:
