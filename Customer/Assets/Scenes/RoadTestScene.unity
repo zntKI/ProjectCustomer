@@ -37080,6 +37080,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 12797944351275646, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 12797944351275646, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 12797944351275646, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 12797944351275646, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 159169746449149207, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: progressDelay
       value: 5
