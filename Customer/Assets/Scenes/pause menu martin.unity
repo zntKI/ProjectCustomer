@@ -38757,12 +38757,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: playerTurnAmount
-      value: 1.5
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: trafficLightPrefab
       value: 
       objectReference: {fileID: 3983218635195244738, guid: ca1e1b0d4ae24fb4f9c2767838aee8f4, type: 3}
+    - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: distanceAheadForSpawn
+      value: 40.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: normalSwerveMultiplier
       value: -0.94
@@ -38777,7 +38781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialAutoSwerveMultiplier
-      value: -7
+      value: -3.21
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialManualSwerveMultiplier
@@ -38793,11 +38797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialAutoSwerveRotationAmount
-      value: 30
+      value: 3.73
       objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: tutorialAutoSwerveCorrectionMultiplier
-      value: 7
+      value: 3.57
       objectReference: {fileID: 0}
     - target: {fileID: 6904326185014257869, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_AnchorMax.y
