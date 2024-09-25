@@ -37236,6 +37236,10 @@ PrefabInstance:
       propertyPath: progressDelay
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 202473997289755792, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 829962241137501420, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_SubmitButton
       value: Submit
@@ -37272,9 +37276,17 @@ PrefabInstance:
       propertyPath: continueActionKeyCode
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 2693418588377264014, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2747249862703310095, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_Name
       value: FullCarPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747249862703310095, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2856559080609263978, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: startAutomatically
@@ -37400,6 +37412,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.201
       objectReference: {fileID: 0}
+    - target: {fileID: 4972068135928468055, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_Intensity
+      value: 4.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042102379496297461, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: speedMaxWhenAccelerating
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: targetMoveSpeed
       value: 5
@@ -37483,6 +37503,10 @@ PrefabInstance:
     - target: {fileID: 7065583305171518079, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111167632242551113, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_Intensity
+      value: 5.28
       objectReference: {fileID: 0}
     - target: {fileID: 7525553314617730303, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_SizeDelta.y
@@ -37652,7 +37676,8 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4188340588253683067, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1630378386622747128, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
     m_AddedGameObjects: []
