@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2723649200334160516}
   - component: {fileID: 2685635909317147639}
   m_Layer: 0
-  m_Name: traffic_light
+  m_Name: TrafficLightModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3092443965080088090}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 496.88425, y: 5.1509376, z: 468.01016}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
