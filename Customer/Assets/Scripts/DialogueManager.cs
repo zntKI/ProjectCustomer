@@ -15,7 +15,7 @@ public class DialogueManager : DialogueViewBase
     [SerializeField] GameObject lastLine;
     [SerializeField] GameObject buttonPrefab;
 
-    [SerializeField] float progressDelay = 2f;
+    [SerializeField] float dialogueAutoProgressTime = 5f; //Time to wait before the dialogue continues automatically
 
     readonly private List<GameObject> instantiatedButtons = new();
 
@@ -57,7 +57,7 @@ public class DialogueManager : DialogueViewBase
             //set collider size
             float optionWidth = rectTransform.rect.width;
             collider.size = new Vector3(optionWidth, collider.size.y, collider.size.z);
-            collider.center = new Vector3(optionWidth / 2 - 200, 0, 0);
+            collider.center = new Vector3(200, 0, 0);
             
             // Add an event listener to handle button clicks
             int optionIndex = option.DialogueOptionID;
@@ -79,7 +79,7 @@ public class DialogueManager : DialogueViewBase
     private IEnumerator AutoProgressOptionsCoroutine(int numberOfOptions, System.Action<int> selectOption)
     {
         // Wait for the specified delay
-        yield return new WaitForSeconds(progressDelay);
+        yield return new WaitForSeconds(dialogueAutoProgressTime);
 
         // Automatically choose the last option
         int lastOptionIndex = numberOfOptions - 1;
@@ -127,7 +127,7 @@ public class DialogueManager : DialogueViewBase
         bool waitingForInput = true;
 
         // Wait for either input or auto-progression
-        while (waitingForInput && timeElapsed < progressDelay)
+        while (waitingForInput && timeElapsed < dialogueAutoProgressTime)
         {
             // If the player continues dialogue
             if (Input.GetKeyDown(KeyCode.Space))

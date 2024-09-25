@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3983218635195244738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -386, y: 19.6463, z: -725.6718}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 38.258453, z: 18.0566}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e96e96c409b6f74285fcdcccc3ccb31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 200
-  timeRedLightSec: 5
+  timeRedLightSec: 30
   greenMat: {fileID: 2100000, guid: a777df4183b56404facf1dfc490514e0, type: 2}
   redMat: {fileID: 2100000, guid: 730139b74e8450245a4801ae7a9747a2, type: 2}
