@@ -792,6 +792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22b3b75168a16847bc595eecf83d43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carAnimator: {fileID: 1847860228}
+  stopTime: 2
 --- !u!114 &523128436
 MonoBehaviour:
   m_ObjectHideFlags: 0
