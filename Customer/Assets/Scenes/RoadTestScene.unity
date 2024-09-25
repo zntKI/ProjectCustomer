@@ -37480,6 +37480,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.248
       objectReference: {fileID: 0}
+    - target: {fileID: 5042102379496297461, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: tutorialAutoSwerveRotationAmount
+      value: 5.59
+      objectReference: {fileID: 0}
     - target: {fileID: 5696473214834942424, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: targetMoveSpeed
       value: 5
@@ -37610,7 +37614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8379112149038939465, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.109667666
+      value: 0.10966776
       objectReference: {fileID: 0}
     - target: {fileID: 8379112149038939465, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -42272,6 +42276,10 @@ PrefabInstance:
     - target: {fileID: 1459287391121238886, guid: f3817522cc3890b41a03560f3bd9ec05, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459287391121238886, guid: f3817522cc3890b41a03560f3bd9ec05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4799341957047872333, guid: f3817522cc3890b41a03560f3bd9ec05, type: 3}
       propertyPath: m_LocalPosition.x

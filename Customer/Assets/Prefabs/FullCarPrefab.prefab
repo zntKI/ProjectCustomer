@@ -523,8 +523,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5467830759624406379}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.416, y: 1.006, z: -0.489}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4159991, y: 1.006, z: -0.4890036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1568,6 +1568,10 @@ PrefabInstance:
     - target: {fileID: 2200577617460952401, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055486527046575512, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
+      propertyPath: tutorialAutoSwerveRotationAmount
+      value: 17.4
       objectReference: {fileID: 0}
     - target: {fileID: 5144100623188484258, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
       propertyPath: m_Name
