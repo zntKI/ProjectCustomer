@@ -103,7 +103,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void Start()
     {
-        var waypointParent = GameObject.FindGameObjectWithTag("GameController");
+        var waypointParent = GameObject.FindGameObjectWithTag("WaypointParent");
         for (int i = 0; i < waypointParent.transform.childCount; i++)
         {
             waypoints.Add(waypointParent.transform.GetChild(i).gameObject);
