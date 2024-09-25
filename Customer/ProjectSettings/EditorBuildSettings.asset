@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/pause menu martin.unity
-    guid: 841e8a261d73eb743a89540fe7f86ddf
-  - enabled: 1
     path: Assets/Scenes/Main menu.unity
     guid: f81acb5df9037284188dafb554be29fb
   - enabled: 1
