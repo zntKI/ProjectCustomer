@@ -10,7 +10,7 @@ public class Sirens : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-StartCoroutine(Siren())
+        StartCoroutine(Siren());
     }
 
     IEnumerator Siren()
@@ -25,6 +25,7 @@ StartCoroutine(Siren())
 
         redLight.SetActive(true);
         blueLight.SetActive(false);
+        StartCoroutine(Siren());
     }
 
 
