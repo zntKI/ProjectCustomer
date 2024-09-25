@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        // Subscribe to UI change slider event
+        UIManager.OnVolumeChanged += ChangeVolume;
 
         DrunkAIMovement.OnStartCarPlaySound += PlayEngineStartUpSound;
         DrunkAIMovement.OnSwervePlaySound += PlaySwerveSound;
@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
 
     void OnDestroy()
     {
-        // Unsubscribe to UI change slider event
+        UIManager.OnVolumeChanged -= ChangeVolume;
 
         DrunkAIMovement.OnStartCarPlaySound -= PlayEngineStartUpSound;
         DrunkAIMovement.OnSwervePlaySound -= PlaySwerveSound;

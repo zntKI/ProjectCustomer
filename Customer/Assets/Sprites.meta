@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Customer/Assets/Sprites.meta
+<<<<<<<< HEAD:Customer/Assets/Scenes/UI test.unity.meta
+guid: f9bc5cc958ec7594e824d7e635fcd512
+========
 guid: 849ccf8f1aaa95f49b8dd662482bd42f
 folderAsset: yes
-========
-guid: f81acb5df9037284188dafb554be29fb
->>>>>>>> origin/Alex:Customer/Assets/Scenes/UI test.unity.meta
+>>>>>>>> origin/main:Customer/Assets/Sprites.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

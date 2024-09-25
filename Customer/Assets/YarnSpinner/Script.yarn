@@ -7,7 +7,7 @@ Friend: Hey, sorry for being late. Hop in. #line:Voice1
             You: No worries, man. Thanks for coming. #line:Voice2
 Friend: Let's get out of here. #line:Voice3
         -> Get in
-            <<setState Car 1>> //Start car
+            <<setState CarPrefab 1>> //Start CarPrefab
             <<jump TutorialSetup>>
 ===
 
@@ -27,7 +27,7 @@ You: Uh, you kinda blew past that stop sign back there. #line:Voice7
 Friend: Oh, I didn't even notice. Must be zoned out from the night. #line:Voice8
 You: Zoned out? You don't look great, man. Tired or something? #line:Voice9
 Friend: Yeah, just tired. Don't worry about it. #line:Voice10
-<<setState Car 3>> //
+<<setState CarPrefab 3>> //Start auto swerving
 ===
 
 title: TutorialSwerving
@@ -36,7 +36,7 @@ position: -404,45
 You: Uh, you're kinda swerving a bit. #line:Voice11
 Friend: I got it! I got it. Just gotta... focus. No worries. #line:Voice12
 <<enableDKey TutorialKeys>>
-<<setState Car 5>> //Start car swerving
+<<setState CarPrefab 5>> //Start tutorial manual swerving
 ===
 
 title: TutorialEnd
@@ -53,7 +53,7 @@ position: -117,-145
 ---
 You: You're not fine, man. What did you do before coming? #line:Voice15
 Friend: It was just a few beers. That's like nothing. #line:Voice16
-<<setState Car 7>> //Car starts speeding up
+<<setState CarPrefab 7>> //Car starts speeding up
         -> Slow down, man.
             You: And now you're speeding down this road like you're trying to prove something. Slow down, man. #line:Voice17
             Friend: It's fine. I just want to get home faster. What's the big deal? #line:Voice18
@@ -61,7 +61,7 @@ Friend: It was just a few beers. That's like nothing. #line:Voice16
             Friend: I've got this under control. You're worrying too much. #line:Voice20
             -> Speeding when you're buzzed is the worst idea. 
                 You: Speeding when you're buzzed is the worst idea. Slow down before you lose control completely. #line:Voice21
-                <<setState Car 9>> //Car starts slowing down
+                <<setState CarPrefab 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
                 ///Crash
@@ -73,7 +73,7 @@ Friend: It was just a few beers. That's like nothing. #line:Voice16
             Friend: I'm telling you, I've got it. Just relax. #line:Voice25
             -> The alcohol is clouding your judgment.
                 You: You're not yourself right now. The alcohol is clouding your judgment. Slow down before it's too late. #line:Voice26
-                <<setState Car 9>> //Car starts slowing down
+                <<setState CarPrefab 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
                 ///Crash
@@ -108,7 +108,7 @@ Friend: I've seen a bunch of my friends drive buzzed before. They're all fine. N
         Friend: It's fine, I can handle it. They did, and so can I. #line:Voice41
         You: Handling it? You can't even keep the car in one lane! Your friends were lucky, but luck runs out. #line:Voice42
     
-    <<setState Car 10>> //Start car swerving
+    <<setState CarPrefab 10>> //Start car swerving
 ===
 
 title: SwervingEnd
@@ -121,8 +121,8 @@ You: Buzzed driving is drunk driving, man. You can't even stop in time. #line:Vo
 Friend: I've got it. It's not like I'm totally drunk or anything. #line:Voice47
 You: Doesn't matter. If you're reacting this late, you're not as in control as you think. #line:Voice48
 
-<<spawnStopSign Car>>
-<<setState Car 11>> //Spawn traffic light
+<<spawnStopSign CarPrefab>>
+<<setState CarPrefab 11>> //Spawn traffic light
 
 <<jump TrafficLightStart>>
 ===
@@ -145,7 +145,7 @@ Friend: I only had a few drinks. It's not like I'm plastered. A little buzz does
         You: Maybe you've gotten away with it, but that doesn't mean you're safe. Buzzed driving is dangerous. #line:Voice59
     
     <<enableSKey TutorialKeys>>
-    <<setState Car 12>> //Traffic Light game
+    <<setState CarPrefab 12>> //Traffic Light game
 ===
 
 title: TrafficLightEnd
