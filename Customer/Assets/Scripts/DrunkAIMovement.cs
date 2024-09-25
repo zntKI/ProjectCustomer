@@ -255,7 +255,6 @@ public class DrunkAIMovement : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
                     SetState(MovementState.DecceleratingAfterAccelerating);
-
                     timeForReactionSecAcceleratingCounter = 0;
                 }
 
