@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 934f87b586973924782440060dd1e9dc
+=======
 guid: 86a8bc0843be8c94bad48e9e2be0c97b
+>>>>>>> Alex
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 15600000
