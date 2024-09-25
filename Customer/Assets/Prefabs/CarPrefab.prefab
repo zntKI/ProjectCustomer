@@ -100,7 +100,7 @@ MonoBehaviour:
   targetMoveSpeed: 10
   moveSpeedIncreaseAmount: 2
   rotationSpeed: 10
-  speedMaxWhenAccelerating: 120
+  speedMaxWhenAccelerating: 50
   speedAcceleratingIncreaseAmount: 10
   timeForReactionSecAccelerating: 4
   speedAcceleratingDecreaseAmount: 15
@@ -307,7 +307,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 697556099912153721, guid: 75d09fd625176f347ab0a86b8e4a8615, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
