@@ -3,12 +3,12 @@ tags:
 position: 81,-384
 ---
 Friend: Hey, sorry for being late. Hop in. #line:Voice1
-        -> No worries, man. 
-            You: No worries, man. Thanks for coming. #line:Voice2
+You: No worries, man. Thanks for coming. #line:Voice2
 Friend: Let's get out of here. #line:Voice3
-        -> Get in
-            <<setState CarPrefab 1>> //Start Car
-            <<jump TutorialSetup>>
+
+<<disableScreenBlackout GameManager>>
+<<setState CarPrefab 1>> //Start CarPrefab
+<<jump TutorialSetup>>
 ===
 
 title: TutorialSetup
@@ -64,7 +64,6 @@ Friend: It was just a few beers. That's like nothing. #line:Voice16
                 <<setState CarPrefab 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
-                ///Crash
                 <<jump BadEnding>>
         -> You're driving like a maniac AND you're drunk. 
             You: You're driving like a maniac AND you're drunk. Just slow down before this gets worse. #line:Voice22
@@ -76,7 +75,6 @@ Friend: It was just a few beers. That's like nothing. #line:Voice16
                 <<setState CarPrefab 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
-                ///Crash
                 <<jump BadEnding>>
 ===
 
@@ -230,7 +228,6 @@ title: ConciousnessRound5
     <<set $conciousness = $conciousness + 1>>
 
 <<if $conciousness < 3>>
-    ///Crash
     <<jump BadEnding>>
 <<else>>
     Friend: Thanks for keeping me awake, man. I don't know what would've happened otherwise. #line:voiceP13
@@ -243,10 +240,12 @@ title: NeutralEnding
 You: Okay, we made it through the worst of it. You've got to pull over. We can't keep going like this. #line:voiceP12
 Friend: Fine... I'll stop soon. #line:voiceP11
 ///Play siren sounds
+<<spawnPoliceLights GameManager>>
 You: The police are behind us. #line:voiceP10
 Friend: Oh no... #line:voiceP9
 You: This is probably the best outcome... #line:voiceP8
-///Police stop you
+///Police ending
+<<endGame GameManager>>
 ===
 
 title: BadEnding
@@ -259,5 +258,6 @@ You: No, you weren't! You never are when you've been drinking. #line:voiceP3
 You: This could've been way worse. You could have hurt someone—or worse, ourselves. 
 Friend: I didn't think it'd get this bad. #line:voiceP2
 You: One drink is all it takes. Buzzed driving is just as dangerous. You can't take that risk. #line:voiceP1
-///Crash
+///Crash ending
+<<endGame GameManager>>
 ===
