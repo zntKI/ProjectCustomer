@@ -294,7 +294,8 @@ public class DrunkAIMovement : MonoBehaviour
                 if (timeForReactionSecStopLightCounter >= timeForReactionSecStopLight)
                 {
 #if UNITY_EDITOR
-                    EditorApplication.isPlaying = false;
+                    //EditorApplication.isPlaying = false;
+                    GameManager.instance.Crash();
 #else
         // For quitting the built application
         Application.Quit();
