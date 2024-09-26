@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
         float oldHorRotation = transform.rotation.eulerAngles.y;
         float newHorRotation = oldHorRotation + horizontalRotation;
 
-        newHorRotation = ClampAngle(newHorRotation, minHorAngle, maxHorAngle);
+       // newHorRotation = ClampAngle(newHorRotation, minHorAngle, maxHorAngle);
         horizontalRotation = newHorRotation - oldHorRotation;
 
         transform.Rotate(Vector3.up, horizontalRotation, Space.World);
