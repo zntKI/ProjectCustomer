@@ -44,6 +44,8 @@ public class DrunkAIMovement : MonoBehaviour
     float normalSwerveMultiplier = -2f;
     [SerializeField]
     float playerTurnAmount = 2f;
+    [SerializeField]
+    float playControlTurnAmount = 2f;
 
     [Header("TrafficLight")]
     [SerializeField]
@@ -80,8 +82,8 @@ public class DrunkAIMovement : MonoBehaviour
     float timeForReactionSecAcceleratingCounter = 0f;
 
     //Swerve vars
-    bool isTryingToCorrectSwerve;
     int swerveCorrectionInputValue;
+    int playerControlInputValue;
     float rotationWhenStartedSwerving;
 
     //StopLight vars
@@ -143,19 +145,19 @@ public class DrunkAIMovement : MonoBehaviour
                 }
 
                 break;
-            case MovementState.TutorialManualSwerve:
+            //case MovementState.TutorialManualSwerve:
 
-                HandleSwerve();
+            //    HandleSwerve();
 
-                break;
-            case MovementState.Swerving:
+            //    break;
+            //case MovementState.Swerving:
 
-                HandleSwerve();
+            //    HandleSwerve();
 
-                break;
+            //    break;
             case MovementState.PassengerControl:
 
-                transform.Rotate(0f, swerveCorrectionInputValue * playerTurnAmount, 0f);
+                transform.Rotate(0f, playerControlInputValue * playControlTurnAmount, 0f);
 
                 break;
             case MovementState.Accelerating:
@@ -166,45 +168,6 @@ public class DrunkAIMovement : MonoBehaviour
 
 
         rb.velocity = transform.forward * moveSpeed;
-    }
-
-    void HandleSwerve()
-    {
-        float swerveRotationAmount = 0f; //swerve force
-        switch (state)
-        {
-            case MovementState.TutorialManualSwerve:
-                swerveRotationAmount = swerveRotationDefaultAmount * tutorialManualSwerveMultiplier;
-                break;
-            case MovementState.Swerving:
-                swerveRotationAmount = swerveRotationDefaultAmount * normalSwerveMultiplier;
-                break;
-            default:
-                Debug.LogError("Not in correct state for handling swerving!");
-                break;
-        }
-
-        float playerRotationAmount = swerveCorrectionInputValue == 1 ? Mathf.Abs(swerveRotationAmount) * playerTurnAmount : 0; //player force
-        float rotationAmount = swerveRotationAmount + playerRotationAmount; //end force amount depending on input
-
-        transform.Rotate(0f, rotationAmount, 0f);
-
-        if (transform.localEulerAngles.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
-        {
-            switch (state)
-            {
-                case MovementState.TutorialManualSwerve:
-                    DialogueNodeManager.instance.StartDialogue("TutorialEnd");
-                    break;
-                case MovementState.Swerving:
-                    DialogueNodeManager.instance.StartDialogue("SwervingEnd");
-                    break;
-                default:
-                    break;
-            }
-
-            SetState(MovementState.PassengerControl);
-        }
     }
 
     void HandleState()
@@ -256,14 +219,15 @@ public class DrunkAIMovement : MonoBehaviour
                 break;
             case MovementState.TutorialManualSwerve:
 
+
                 HandlePlayerInput();
-                //Controlled in FixedUpdate
+                HandleSwerve();
 
                 break;
             case MovementState.PassengerControl:
-                HandlePlayerInput();
+                //HandlePlayerInput();
 
-                HandlePlayerInput();
+                playerControlInputValue = Input.GetKey(KeyCode.D) ? 1 : 0;
                 CheckIfReachedWaypoint();
                 break;
             case MovementState.Accelerating:
@@ -291,7 +255,6 @@ public class DrunkAIMovement : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
                     SetState(MovementState.DecceleratingAfterAccelerating);
-
                     timeForReactionSecAcceleratingCounter = 0;
                 }
 
@@ -316,7 +279,7 @@ public class DrunkAIMovement : MonoBehaviour
             case MovementState.Swerving:
 
                 HandlePlayerInput();
-                //Controlled in FixedUpdate
+                HandleSwerve();
 
                 break;
             case MovementState.SpawnTrafficLight:
@@ -381,6 +344,47 @@ public class DrunkAIMovement : MonoBehaviour
         }
     }
 
+    void HandleSwerve()
+    {
+        float swerveRotationAmount = 0f; //swerve force
+        switch (state)
+        {
+            case MovementState.TutorialManualSwerve:
+                swerveRotationAmount = swerveRotationDefaultAmount * tutorialManualSwerveMultiplier;
+                break;
+            case MovementState.Swerving:
+                swerveRotationAmount = swerveRotationDefaultAmount * normalSwerveMultiplier;
+                break;
+            default:
+                Debug.LogError("Not in correct state for handling swerving!");
+                break;
+        }
+
+        //swerveCorrectionInputValue = Input.GetKeyDown(KeyCode.D) ? 1 : 0;
+        //Debug.Log(swerveCorrectionInputValue);
+        float playerRotationAmount = swerveCorrectionInputValue == 1 ? Mathf.Abs(swerveRotationAmount) * playerTurnAmount : 0; //player force
+        float rotationAmount = swerveRotationAmount + playerRotationAmount; //end force amount depending on input
+
+        transform.Rotate(0f, rotationAmount, 0f);
+
+        if (transform.localEulerAngles.y > rotationWhenStartedSwerving) //Has car returned to starting rotation
+        {
+            switch (state)
+            {
+                case MovementState.TutorialManualSwerve:
+                    DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+                    break;
+                case MovementState.Swerving:
+                    DialogueNodeManager.instance.StartDialogue("SwervingEnd");
+                    break;
+                default:
+                    break;
+            }
+
+            SetState(MovementState.PassengerControl);
+        }
+    }
+
     bool CheckIfReachedWaypoint()
     {
         var possibleWaypoint = waypoints.FirstOrDefault(w => Vector3.Magnitude(transform.position - w.transform.position) < w.GetComponent<DebugDrawCircleRange>().Radius);
@@ -426,7 +430,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        swerveCorrectionInputValue = Input.GetKey(KeyCode.D) ? 1 : 0;
+        swerveCorrectionInputValue = Input.GetKeyDown(KeyCode.D) ? 1 : 0;
     }
 
     [YarnCommand("setState")]
