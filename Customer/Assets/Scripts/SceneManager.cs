@@ -30,7 +30,7 @@ public class PlayButtonCarControl : MonoBehaviour
     private void LoadGameScene()
     {
         // Load the game scene (replace "GameScene" with your scene's name)
-        SceneManager.LoadScene("LEVEL 1");
+        SceneManager.LoadScene(1);
     }
 
     // Function to update whether the car is moving left or right
