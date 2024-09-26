@@ -9,6 +9,10 @@ using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("StartScene")]
+    [SerializeField]
+    GameObject screenBlackout;
+
     [Header("NPC Cars")]
     [SerializeField]
     GameObject npcCarPrefab;
@@ -46,6 +50,12 @@ public class GameManager : MonoBehaviour
             }
             waypointOffsetCounter++;
         }
+    }
+
+    [YarnCommand("disableScreenBlackout")]
+    public void DisableScreenBlackout()
+    {
+        screenBlackout.SetActive(false);
     }
 
     [YarnCommand("spawnPoliceLights")]

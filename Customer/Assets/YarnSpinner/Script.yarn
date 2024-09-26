@@ -3,12 +3,12 @@ tags:
 position: 81,-384
 ---
 Friend: Hey, sorry for being late. Hop in. #line:Voice1
-        -> No worries, man. 
-            You: No worries, man. Thanks for coming. #line:Voice2
+You: No worries, man. Thanks for coming. #line:Voice2
 Friend: Let's get out of here. #line:Voice3
-        -> Get in
-            <<setState CarPrefab 1>> //Start Car
-            <<jump TutorialSetup>>
+
+<<disableScreenBlackout GameManager>>
+<<setState CarPrefab 1>> //Start CarPrefab
+<<jump TutorialSetup>>
 ===
 
 title: TutorialSetup
