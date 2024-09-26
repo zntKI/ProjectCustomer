@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8578827625446800467, guid: c89d4312d0e94a846938a6a7663cacff, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -3433457063646126736, guid: c89d4312d0e94a846938a6a7663cacff, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -56,10 +60,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FarmFence
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c89d4312d0e94a846938a6a7663cacff, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6462645772955062561, guid: c89d4312d0e94a846938a6a7663cacff, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8d5e8b27858a02d47923c29bb1de8d81, type: 2}
+    - target: {fileID: 8122363429942836559, guid: c89d4312d0e94a846938a6a7663cacff, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
