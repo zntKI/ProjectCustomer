@@ -1,19 +1,32 @@
 using DG.Tweening;
+using EasyRoads3Dv3;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("NPC Cars")]
     [SerializeField]
     GameObject npcCarPrefab;
     [SerializeField]
     float waypointsOffsetBetweenCars;
+    [SerializeField] bool spawnCars;
+
+    [Header("Police")]
+    [SerializeField]
+    GameObject policeLightsPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (!spawnCars)
+        {
+            return;
+        }
+
         var waypointParent = GameObject.FindGameObjectWithTag("WaypointParent");
 
         int waypointOffsetCounter = 0;
@@ -32,5 +45,13 @@ public class GameManager : MonoBehaviour
             }
             waypointOffsetCounter++;
         }
+    }
+
+    [YarnCommand("spawnPoliceLights")]
+    public void SpawnLights()
+    {
+        //Vector3 spawnPos = new Vector3()
+
+        Instantiate(policeLightsPrefab, transform.position, transform.rotation, transform);
     }
 }
