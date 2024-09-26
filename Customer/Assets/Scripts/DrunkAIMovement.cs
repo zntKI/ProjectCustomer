@@ -218,8 +218,6 @@ public class DrunkAIMovement : MonoBehaviour
 
                 break;
             case MovementState.TutorialManualSwerve:
-
-
                 HandlePlayerInput();
                 HandleSwerve();
 
@@ -430,7 +428,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        swerveCorrectionInputValue = Input.GetKeyDown(KeyCode.D) ? 1 : 0;
+        swerveCorrectionInputValue = Input.GetKey(KeyCode.D) ? 1 : 0;
     }
 
     [YarnCommand("setState")]

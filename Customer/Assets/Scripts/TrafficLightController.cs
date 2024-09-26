@@ -8,7 +8,7 @@ public class TrafficLightController : MonoBehaviour
     public static event Action OnSignalChangeBackToGreen;
 
     [SerializeField]
-    float timeRedLightSec = 5f;
+    float timeRedLightSec = 10f;
 
     [SerializeField]
     Material greenMat;

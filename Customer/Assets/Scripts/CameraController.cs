@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minHorAngle = 50f;
     [SerializeField] private float maxHorAngle = 130f;
 
+
     private void Start()
     {
         Cursor.visible = false;
@@ -37,7 +38,12 @@ public class CameraController : MonoBehaviour
         float oldHorRotation = transform.rotation.eulerAngles.y;
         float newHorRotation = oldHorRotation + horizontalRotation;
 
-        newHorRotation = ClampAngle(newHorRotation, minHorAngle, maxHorAngle);
+        float curMinHorAngle = minHorAngle + transform.parent.rotation.eulerAngles.y;
+        curMinHorAngle = curMinHorAngle > 180 ? curMinHorAngle - 360 : curMinHorAngle;
+        float curMaxHorAngle = maxHorAngle + transform.parent.rotation.eulerAngles.y;
+        curMaxHorAngle = curMaxHorAngle > 180 ? curMaxHorAngle - 360 : curMaxHorAngle;
+
+        newHorRotation = ClampAngle(newHorRotation, curMinHorAngle, curMaxHorAngle);
         horizontalRotation = newHorRotation - oldHorRotation;
 
         transform.Rotate(Vector3.up, horizontalRotation, Space.World);

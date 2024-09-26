@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 06cfc50e5b29d084f9a527662e8cd83b, type: 2}
+  audioSourceBackground: {fileID: 7696578057924759189}
   audioSourceSFX: {fileID: 7468957254215412404}
   engineStartUpSound: {fileID: 8300000, guid: 2da4992f62324d64691f1b8644d62b9e, type: 3}
   tireSqueekingSound: {fileID: 8300000, guid: 6b3781b834ecfb44bb659b0be5c3eb2e, type: 3}
@@ -246,3 +247,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5ba7542e512383e49a60cd2cd83eb4d9, type: 3}
   - {fileID: 8300000, guid: c45bfc28178f7e94d8c10cd943ce3cf3, type: 3}
   - {fileID: 8300000, guid: 802478a2b5d90d642af0a44ed3ee2196, type: 3}
+  policeSiren: {fileID: 8300000, guid: da83d4ef91f7dec479ff1e37c2f6236a, type: 3}
+  carCrash: {fileID: 8300000, guid: 235e72394230eb14a973e18ed9eceb1c, type: 3}
+  carCrashShort: {fileID: 8300000, guid: bfb0873833c809a4ca2de00886bae152, type: 3}
