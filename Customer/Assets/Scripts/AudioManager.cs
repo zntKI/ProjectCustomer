@@ -5,12 +5,16 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+
     [SerializeField]
     AudioMixer audioMixer;
 
     [Header("SFX")]
     [Space]
 
+    [SerializeField]
+    AudioSource audioSourceBackground;
     [SerializeField]
     AudioSource audioSourceSFX;
     [Space]
@@ -21,13 +25,27 @@ public class AudioManager : MonoBehaviour
     AudioClip tireSqueekingSound;
     [SerializeField]
     AudioClip[] honkSounds;
+    [SerializeField]
+    AudioClip policeSiren; 
+    [SerializeField]
+    AudioClip carCrash;
+    [SerializeField]
+    AudioClip carCrashShort;
+
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         UIManager.OnVolumeChanged += ChangeVolume;
 
         DrunkAIMovement.OnStartCarPlaySound += PlayEngineStartUpSound;
         DrunkAIMovement.OnSwervePlaySound += PlaySwerveSound;
+        GameManager.OnPlaySiren += PlayPoliceSirenSound;
+        GameManager.OnPlayCrash += PlayCrashSound;
     }
 
     void PlayEngineStartUpSound()
@@ -42,9 +60,27 @@ public class AudioManager : MonoBehaviour
         audioSourceSFX.Play();
     }
 
+    void PlayCrashSound()
+    {
+        audioSourceSFX.clip = carCrashShort;
+        audioSourceSFX.Play();
+    }
+
+    void PlayPoliceSirenSound()
+    {
+        audioSourceBackground.clip = policeSiren;
+        audioSourceBackground.loop = true;
+        audioSourceBackground.Play();
+    }
+
     void ChangeVolume(string volumeParamName, float value)
     {
         audioMixer.SetFloat(volumeParamName, value);
+    }
+
+    public bool IsSFXOver()
+    {
+        return audioSourceSFX.isPlaying;
     }
 
     void OnDestroy()
@@ -53,5 +89,7 @@ public class AudioManager : MonoBehaviour
 
         DrunkAIMovement.OnStartCarPlaySound -= PlayEngineStartUpSound;
         DrunkAIMovement.OnSwervePlaySound -= PlaySwerveSound;
+        GameManager.OnPlaySiren -= PlayPoliceSirenSound;
+        GameManager.OnPlayCrash += PlayCrashSound;
     }
 }

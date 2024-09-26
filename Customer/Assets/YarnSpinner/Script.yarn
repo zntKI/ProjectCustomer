@@ -64,7 +64,7 @@ Friend: It was just a few beers. That's like nothing. #line:Voice16
                 <<setState CarPrefab 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
-                <<jump BadEnding>>
+                <<crash GameManager>>
         -> You're driving like a maniac AND you're drunk. 
             You: You're driving like a maniac AND you're drunk. Just slow down before this gets worse. #line:Voice22
             Friend: I'm not even going that fast. I've driven like this before. #line:Voice23
@@ -75,7 +75,7 @@ Friend: It was just a few beers. That's like nothing. #line:Voice16
                 <<setState CarPrefab 9>> //Car starts slowing down
                 <<jump SpeedingEnd>>
             -> Do nothing
-                <<jump BadEnding>>
+                <<crash GameManager>>
 ===
 
 title: SpeedingEnd
@@ -228,7 +228,7 @@ title: ConciousnessRound5
     <<set $conciousness = $conciousness + 1>>
 
 <<if $conciousness < 3>>
-    <<jump BadEnding>>
+    <<crash GameManager>>
 <<else>>
     Friend: Thanks for keeping me awake, man. I don't know what would've happened otherwise. #line:voiceP13
     <<jump NeutralEnding>>

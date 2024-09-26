@@ -44,5 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a862b6cd1c2262408684c9f8641384b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenBlackout: {fileID: 0}
   npcCarPrefab: {fileID: 4889310253404739071, guid: e8b52df43e17dbc409efa471ebeea0d8, type: 3}
   waypointsOffsetBetweenCars: 20
+  spawnCars: 0
+  policeLightsPrefab: {fileID: 2035272795333000731, guid: 36f23daa34da84f42ba48e859ad3a014, type: 3}
