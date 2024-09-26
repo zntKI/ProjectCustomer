@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CrashCoroutine()
     {
-        while (AudioManager.instance.IsSFXOver())
+        while (AudioManager.instance.IsSFXOn())
         {
             yield return null;
         }

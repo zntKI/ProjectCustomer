@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
         audioMixer.SetFloat(volumeParamName, value);
     }
 
-    public bool IsSFXOver()
+    public bool IsSFXOn()
     {
         return audioSourceSFX.isPlaying;
     }
