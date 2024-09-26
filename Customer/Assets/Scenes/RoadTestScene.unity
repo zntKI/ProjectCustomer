@@ -48777,14 +48777,6 @@ PrefabInstance:
       value: -0.46500397
       objectReference: {fileID: 0}
     - target: {fileID: 4237432126111656078, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
-      propertyPath: maxHorAngle
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 4237432126111656078, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
-      propertyPath: minHorAngle
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4237432126111656078, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: maxVertAngle
       value: 30
       objectReference: {fileID: 0}
@@ -48835,6 +48827,10 @@ PrefabInstance:
     - target: {fileID: 4833950652733891917, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_Name
       value: ScreenBlackout
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833950652733891917, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4934772218763576335, guid: bc28e7312025d4d45a2d3ea1286d718d, type: 3}
       propertyPath: m_LocalPosition.z
