@@ -1,14 +1,18 @@
 using DG.Tweening;
 using EasyRoads3Dv3;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
+using static Unity.VisualScripting.Member;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     [Header("StartScene")]
     [SerializeField]
     GameObject screenBlackout;
@@ -23,6 +27,17 @@ public class GameManager : MonoBehaviour
     [Header("Police")]
     [SerializeField]
     GameObject policeLightsPrefab;
+
+    public static event Action OnPlaySiren;
+    public static event Action OnPlayCrash;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +73,12 @@ public class GameManager : MonoBehaviour
         screenBlackout.SetActive(false);
     }
 
+    [YarnCommand("enableScreenBlackout")]
+    public void EnableScreenBlackout()
+    {
+        screenBlackout.SetActive(true);
+    }
+
     [YarnCommand("spawnPoliceLights")]
     public void SpawnLights()
     {
@@ -65,11 +86,32 @@ public class GameManager : MonoBehaviour
         Vector3 spawnOffset = new Vector3(-6, 0, 9);
 
         Instantiate(policeLightsPrefab, transform.position + spawnOffset, transform.rotation, transform);
+        OnPlaySiren.Invoke();
+    }
+
+    [YarnCommand("crash")]
+    public void Crash()
+    {
+        OnPlayCrash.Invoke();
+        EnableScreenBlackout();
+
+        StartCoroutine(CrashCoroutine());
+    }
+
+    IEnumerator CrashCoroutine()
+    {
+        while (AudioManager.instance.IsSFXOver())
+        {
+            yield return null;
+        }
+
+        DialogueNodeManager.instance.StartDialogue("BadEnding");
+        
     }
 
     [YarnCommand("endGame")]
     public void EndGame()
-    {
+    { 
         SceneManager.LoadScene(2);
     }
 }
