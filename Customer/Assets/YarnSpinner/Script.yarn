@@ -157,11 +157,11 @@ You: Exactly! You're slowing down mentally. You need to stop. #line:voiceP39
     -> Let's stop this before it gets worse.
         You: Come on, man, you're about to pass out. Let's stop this before it gets worse. #line:voiceP38
         Friend: No, no. I'm not pulling over, we're almost home. #line:voiceP37
-        You: "You can barely keep your eyes open. You're going to lose control completely." #line:voiceP36
-        Friend: "I said I've got this! We'll be fine." #line:voiceP35
-        You: "You're not fine, and you're about to black out. Just stop before it's too late." #line:voiceP34
+        You: You can barely keep your eyes open. You're going to lose control completely. #line:voiceP36
+        Friend: I said I've got this! We'll be fine. #line:voiceP35
+        You: You're not fine, and you're about to black out. Just stop before it's too late. #line:voiceP34
     
-    <<jump ConciousnessStart>>
+    <<jump ConciousnessRound1>>
 ===
 
 title: ConciousnessRound1
@@ -171,7 +171,7 @@ position: 726,-154
 <<declare $conciousness = 0>>
 
 -> Let's talk about something to keep you awake.
-    You: Come on, man. Stay with me. Let's talk about something to keep you awake. #line:voiceP33d
+    You: Come on, man. Stay with me. Let's talk about something to keep you awake. #line:voiceP33
     Friend: Yeah... okay, I'm still here. #line:voiceP32
     <<set $conciousness = $conciousness + 1>>
 -> Maybe we should stop for a break.
