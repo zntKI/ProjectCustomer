@@ -20,9 +20,9 @@ public class DialogueNodeManager : MonoBehaviour
     //Start with the first dialogue node
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) {
+        /*if (Input.GetKeyDown(KeyCode.E)) {
             dialogueRunner.StartDialogue("Intro");
-        }
+        }*/
     }
 
     // Start selected dialogue node
