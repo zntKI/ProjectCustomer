@@ -1621,15 +1621,19 @@ MonoBehaviour:
     width: 0.2
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 26.012844, y: -64.325516, z: -18.46756}
+  - position: {x: 29.851883, y: -61.101208, z: -18}
     roll: 0
-  - position: {x: 31.880482, y: -63.996704, z: -34.515488}
+  - position: {x: 32.754528, y: -63.996704, z: -36.025955}
+    roll: -45.1
+  - position: {x: 23.32471, y: -62.895718, z: -32.307297}
     roll: 0
-  - position: {x: 15.448658, y: -52.760117, z: -22.757935}
+  - position: {x: 8.751858, y: -57.540257, z: -25.525024}
     roll: 0
-  - position: {x: 0, y: 0, z: 25}
+  - position: {x: 10.876678, y: -61.619385, z: -33.202225}
     roll: 0
-  - position: {x: 0, y: 0, z: 35}
+  - position: {x: 22.741276, y: -64.362305, z: -26.994705}
+    roll: 0
+  - position: {x: 35.272472, y: -62.070995, z: -26.57483}
     roll: 0
 --- !u!4 &39209948
 Transform:
@@ -14711,8 +14715,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027349144}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.007250553, y: 0.9658136, z: 0.027172975, w: 0.25770763}
-  m_LocalPosition: {x: 58.40158, y: 1.5744858, z: 154.93073}
+  m_LocalRotation: {x: 0.008444364, y: 0.9905353, z: -0.07162246, w: 0.11678515}
+  m_LocalPosition: {x: 62.24062, y: 4.798794, z: 155.39828}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15518,8 +15522,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113793592}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0007405362, y: 0.97778195, z: 0.0034546796, w: 0.20959482}
-  m_LocalPosition: {x: 53.41969, y: 1.5744858, z: 163.60141}
+  m_LocalRotation: {x: 0.016586857, y: 0.97759145, z: -0.08439234, w: 0.19214027}
+  m_LocalPosition: {x: 59.91493, y: 4.798794, z: 165.12408}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41774,6 +41778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035233608}
   - component: {fileID: 2035233607}
+  - component: {fileID: 2035233609}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -41799,7 +41804,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1798014023}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1027349146}
   m_Lens:
     FieldOfView: 60.000004
@@ -41828,14 +41833,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035233606}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0007405361, y: 0.97778195, z: 0.0034546792, w: 0.20959483}
-  m_LocalPosition: {x: 53.41969, y: 1.5744858, z: 163.60141}
+  m_LocalRotation: {x: 0.016586857, y: 0.97759145, z: -0.08439234, w: 0.19214027}
+  m_LocalPosition: {x: 59.91493, y: 4.798794, z: 165.12408}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 450009247}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.2376595, y: 459.97696, z: 0}
+--- !u!111 &2035233609
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035233606}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 13ea341394d7f0a489da4b963b0e48c7, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 13ea341394d7f0a489da4b963b0e48c7, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &2038145233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43324,6 +43345,10 @@ PrefabInstance:
     - target: {fileID: 3219430391096887650, guid: fc829620a2a95174c9d10da5ba04dbae, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219430391096887650, guid: fc829620a2a95174c9d10da5ba04dbae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3625311481435002321, guid: fc829620a2a95174c9d10da5ba04dbae, type: 3}
       propertyPath: m_LocalPosition.x
