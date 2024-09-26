@@ -8,8 +8,7 @@ Friend: Hey, sorry for being late. Hop in. #line:Voice1
 Friend: Let's get out of here. #line:Voice3
         -> Get in
             <<setState CarPrefab 1>> //Start CarPrefab
-            //<<jump TutorialSetup>>
-            <<jump NeutralEnding>>
+            <<jump TutorialSetup>>
 ===
 
 title: TutorialSetup
@@ -246,6 +245,7 @@ You: The police are behind us. #line:voiceP10
 Friend: Oh no... #line:voiceP9
 You: This is probably the best outcome... #line:voiceP8
 ///Police ending
+<<endGame GameManager>>
 ===
 
 title: BadEnding
@@ -259,4 +259,5 @@ You: This could've been way worse. You could have hurt someone—or worse, ourse
 Friend: I didn't think it'd get this bad. #line:voiceP2
 You: One drink is all it takes. Buzzed driving is just as dangerous. You can't take that risk. #line:voiceP1
 ///Crash ending
+<<endGame GameManager>>
 ===
