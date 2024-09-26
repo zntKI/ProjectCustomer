@@ -7,7 +7,7 @@ Friend: Hey, sorry for being late. Hop in. #line:Voice1
             You: No worries, man. Thanks for coming. #line:Voice2
 Friend: Let's get out of here. #line:Voice3
         -> Get in
-            <<setState CarPrefab 1>> //Start CarPrefab
+            <<setState CarPrefab 1>> //Start Car
             <<jump TutorialSetup>>
 ===
 
