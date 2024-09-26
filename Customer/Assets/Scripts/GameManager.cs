@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
@@ -50,8 +51,15 @@ public class GameManager : MonoBehaviour
     [YarnCommand("spawnPoliceLights")]
     public void SpawnLights()
     {
-        //Vector3 spawnPos = new Vector3()
+        //play sound
+        Vector3 spawnOffset = new Vector3(-6, 0, 9);
 
-        Instantiate(policeLightsPrefab, transform.position, transform.rotation, transform);
+        Instantiate(policeLightsPrefab, transform.position + spawnOffset, transform.rotation, transform);
+    }
+
+    [YarnCommand("endGame")]
+    public void EndGame()
+    {
+        SceneManager.LoadScene(2);
     }
 }
