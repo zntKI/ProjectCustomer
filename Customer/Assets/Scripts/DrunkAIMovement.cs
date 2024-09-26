@@ -429,7 +429,6 @@ public class DrunkAIMovement : MonoBehaviour
     void HandlePlayerInput()
     {
         swerveCorrectionInputValue = Input.GetKey(KeyCode.D) ? 1 : 0;
-        Debug.Log(swerveCorrectionInputValue);
     }
 
     [YarnCommand("setState")]

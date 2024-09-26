@@ -849,7 +849,7 @@ Transform:
   m_GameObject: {fileID: 5467830759624406379}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.41600037, y: 1.006, z: -0.48900604}
+  m_LocalPosition: {x: 0.41600034, y: 1.0059999, z: -0.48900604}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -911,7 +911,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5565100964548095320}
   m_LocalRotation: {x: 0.002190307, y: 0.00001976449, z: -0.009023228, w: 0.9999569}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4319992}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4319993}
   m_LocalScale: {x: 0.00048188595, y: 0.00048188595, z: 0.00048188595}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2084,6 +2084,22 @@ PrefabInstance:
       propertyPath: stopSignPrefab
       value: 
       objectReference: {fileID: 1001444677436267089, guid: 4e9b5c81808f40d41b0b925399697216, type: 3}
+    - target: {fileID: 3055486527046575512, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
+      propertyPath: trafficLightPrefab
+      value: 
+      objectReference: {fileID: 5040136491956206948, guid: b9d25a54605e3e34bbf2cfe13d0a2dda, type: 3}
+    - target: {fileID: 3055486527046575512, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
+      propertyPath: speedMaxWhenAccelerating
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055486527046575512, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
+      propertyPath: trafficLightDistanceForSpawn
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055486527046575512, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
+      propertyPath: trafficLightOffsetToTheRight
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3070949208209171514, guid: 38ce043a7fb9e4547bead601da901c27, type: 3}
       propertyPath: m_Color.b
       value: 0.85882354
