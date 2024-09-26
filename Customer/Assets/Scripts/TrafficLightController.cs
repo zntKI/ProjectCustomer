@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class TrafficLightController : MonoBehaviour
 {
@@ -11,9 +12,7 @@ public class TrafficLightController : MonoBehaviour
     float timeRedLightSec = 10f;
 
     [SerializeField]
-    Material greenMat;
-    [SerializeField]
-    Material redMat;
+    Light lightToChange;
 
     TrafficLightSignal signal;
 
@@ -43,11 +42,11 @@ public class TrafficLightController : MonoBehaviour
         switch (signal)
         {
             case TrafficLightSignal.Green:
-                GetComponent<MeshRenderer>().material = greenMat;
+                lightToChange.color = Color.green;
                 OnSignalChangeBackToGreen?.Invoke();
                 break;
             case TrafficLightSignal.Red:
-                GetComponent<MeshRenderer>().material = redMat;
+                lightToChange.color = Color.red;
                 timeRedLightSecCounter = 0;
                 break;
             default:
