@@ -57,9 +57,11 @@ public class GameManager : MonoBehaviour
                 var waypoint = waypointParent.transform.GetChild(i);
 
                 // Spawn a car at the given waypoint
-                Vector3 spawnPos = new Vector3(waypoint.position.x, waypoint.position.y, waypoint.position.z + waypoint.GetComponent<DebugDrawCircleRange>().Radius * 2);
-                Quaternion carOrientation = waypoint.rotation * Quaternion.Euler(0, -90, 0); // Rotate it 180 degs on the y axis
-                GameObject spawnedCar = Instantiate(npcCarPrefab, spawnPos, carOrientation);
+                Vector3 vector = waypoint.transform.localPosition + waypoint.transform.right * -1f * waypoint.GetComponent<DebugDrawCircleRange>().Radius * 2f;
+                //Vector3 newPos = waypoint.transform.TransformVector(vector);
+                //Vector3 spawnPos = new Vector3(waypoint.position.x - waypoint.GetComponent<DebugDrawCircleRange>().Radius * 3, waypoint.position.y, waypoint.position.z);
+                //Quaternion carOrientation = waypoint.rotation * Quaternion.Euler(0, -90, 0); // Rotate it 180 degs on the y axis
+                GameObject spawnedCar = Instantiate(npcCarPrefab, vector, Quaternion.identity);
 
                 spawnedCar.GetComponent<NPCCarBehavior>().SetWaypoints(i);
             }
