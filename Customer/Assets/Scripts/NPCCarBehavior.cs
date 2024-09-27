@@ -31,6 +31,7 @@ public class NPCCarBehavior : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = transform.forward * moveSpeed;
+        //rb.AddForce(transform.forward * moveSpeed);
     }
 
     void Update()
@@ -47,14 +48,14 @@ public class NPCCarBehavior : MonoBehaviour
             currentWaypointToFollowData = currentWaypointToFollow.GetComponent<DebugDrawCircleRange>();
             waypoints.RemoveAt(0);
 
-            Vector3 forwardDirection = currentWaypointToFollow.transform.localRotation * Vector3.right * -1;
+            Vector3 forwardDirection = currentWaypointToFollow.transform.localRotation * Vector3.forward * -1;
 
             Quaternion targetRotation = Quaternion.LookRotation(forwardDirection);
             transform.rotation = targetRotation;
         }
 
 
-        if (Vector3.Magnitude(transform.position - (currentWaypointToFollow.transform.position + (currentWaypointToFollow.transform.localRotation * Vector3.forward * currentWaypointToFollowData.Radius * 2f))) < currentWaypointToFollowData.Radius)
+        if (Vector3.Magnitude(transform.position - (currentWaypointToFollow.transform.position + (currentWaypointToFollow.transform.localRotation * Vector3.right * -1 * currentWaypointToFollowData.Radius * 2f))) < currentWaypointToFollowData.Radius * 2f)
         {
             currentWaypointToFollow = null;
         }
