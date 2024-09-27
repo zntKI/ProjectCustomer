@@ -218,8 +218,6 @@ public class DrunkAIMovement : MonoBehaviour
 
                 break;
             case MovementState.TutorialManualSwerve:
-
-
                 HandlePlayerInput();
                 HandleSwerve();
 
@@ -296,7 +294,8 @@ public class DrunkAIMovement : MonoBehaviour
                 if (timeForReactionSecStopLightCounter >= timeForReactionSecStopLight)
                 {
 #if UNITY_EDITOR
-                    EditorApplication.isPlaying = false;
+                    //EditorApplication.isPlaying = false;
+                    GameManager.instance.Crash();
 #else
         // For quitting the built application
         Application.Quit();
@@ -430,7 +429,7 @@ public class DrunkAIMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        swerveCorrectionInputValue = Input.GetKeyDown(KeyCode.D) ? 1 : 0;
+        swerveCorrectionInputValue = Input.GetKey(KeyCode.D) ? 1 : 0;
     }
 
     [YarnCommand("setState")]
@@ -504,7 +503,7 @@ public class DrunkAIMovement : MonoBehaviour
             if (distanceCounter >= distanceAhead)
             {
                 //spawnPosition = waypoint.transform.position + waypoint.transform.right * (offset + prefab.transform.lossyScale.z / 2);
-                spawnPosition = waypoint.transform.position + -1 * waypoint.transform.forward * (offset + prefab.transform.lossyScale.z / 2);
+                spawnPosition = waypoint.transform.position + waypoint.transform.right * (offset + prefab.transform.lossyScale.z / 2);
 
                 Quaternion rotationOffset = Quaternion.Euler(0, 0, 0);
                 spawnRotation = waypoint.transform.rotation * rotationOffset;
