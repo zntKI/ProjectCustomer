@@ -251,7 +251,7 @@ public class DrunkAIMovement : MonoBehaviour
                     GameManager.instance.Crash();
 #else
         // For quitting the built application
-        Application.Quit();
+        GameManager.instance.Crash();
 #endif
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
@@ -302,7 +302,7 @@ public class DrunkAIMovement : MonoBehaviour
                     GameManager.instance.Crash();
 #else
         // For quitting the built application
-        Application.Quit();
+        GameManager.instance.Crash();
 #endif
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
