@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1d5655cb0a7b954418496a17f8d5219e, type: 2}
     - target: {fileID: 919132149155446097, guid: a7d18881fda622746a7cd1072d0c9430, type: 3}
       propertyPath: m_Name
-      value: Stop Sign
+      value: StopSignModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a7d18881fda622746a7cd1072d0c9430, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
 using Yarn.Unity;
 using static UnityEngine.GraphicsBuffer;
@@ -246,7 +247,8 @@ public class DrunkAIMovement : MonoBehaviour
                 if (timeForReactionSecAcceleratingCounter >= timeForReactionSecAccelerating)
                 {
 #if UNITY_EDITOR
-                    EditorApplication.isPlaying = false;
+                    //EditorApplication.isPlaying = false;
+                    GameManager.instance.Crash();
 #else
         // For quitting the built application
         Application.Quit();
@@ -520,14 +522,38 @@ public class DrunkAIMovement : MonoBehaviour
         return Instantiate(prefab, spawnPosition, spawnRotation);
     }
 
+    bool isCrashCouroutineRunning = false;
+    IEnumerator CrashTimerCoroutine()
+    {
+        yield return new WaitForSeconds(4);
+
+        Debug.Log("crashed");
+       // GameManager.instance.Crash();
+    }
+
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Road"))
         {
-            return;
+            if (isCrashCouroutineRunning) {
+                StopCoroutine(CrashTimerCoroutine());
+                isCrashCouroutineRunning = false;
+            }
+        }
+        else
+        {
+            if (!isCrashCouroutineRunning)
+            {
+                StartCoroutine(CrashTimerCoroutine());
+                isCrashCouroutineRunning = true;
+            }
         }
 
-        // TODO: include crash effect
+        if(collision.gameObject.CompareTag("Guardrail"))
+        {
+            GameManager.instance.Crash();
+        }
     }
 }
 
