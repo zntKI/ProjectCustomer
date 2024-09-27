@@ -528,7 +528,8 @@ public class DrunkAIMovement : MonoBehaviour
         isCrashCouroutineRunning = true;
         yield return new WaitForSeconds(4f);
         isCrashCouroutineRunning = false;
-        GameManager.instance.Crash();
+        Debug.Log("crashed");
+        //GameManager.instance.Crash();
     }
 
 
