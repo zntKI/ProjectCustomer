@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [Header("StartScene")]
     [SerializeField]
     GameObject screenBlackout;
+    [SerializeField]
+    float startDialogueTime = 3f;
 
     [Header("NPC Cars")]
     [SerializeField]
@@ -89,6 +91,19 @@ public class GameManager : MonoBehaviour
 
         Instantiate(policeLightsPrefab, transform.position + spawnOffset, transform.rotation, transform);
         OnPlaySiren.Invoke();
+    }
+
+    [YarnCommand("getInCar")]
+    public void GetInCar()
+    {
+        StartCoroutine(GetInCarCoroutine());
+    }
+
+    IEnumerator GetInCarCoroutine()
+    {
+        yield return new WaitForSeconds(startDialogueTime);
+
+        DialogueNodeManager.instance.StartDialogue("TutorialSetup");
     }
 
     [YarnCommand("crash")]

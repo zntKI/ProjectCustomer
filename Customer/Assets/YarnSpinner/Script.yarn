@@ -8,8 +8,7 @@ Friend: Let's get out of here. #line:Voice3
 
 <<disableScreenBlackout GameManager>>
 <<setState CarPrefab 1>> //Start CarPrefab
-<<jump TutorialSetup>>
-//<<jump SwervingEnd>>
+<<getInCar GameManager>>
 ===
 
 title: TutorialSetup

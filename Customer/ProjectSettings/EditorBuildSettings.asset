@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main menu.unity
     guid: f81acb5df9037284188dafb554be29fb
   - enabled: 1
-    path: Assets/Scenes/RoadTestScene.unity
-    guid: dee630a3e161da143bf13232edc72928
+    path: Assets/Scenes/FinalScene.unity
+    guid: cade2823d7931824d806c72df1302eb7
   - enabled: 1
-    path: Assets/Scenes/CrashScene.unity
+    path: Assets/Scenes/EndScene.unity
     guid: 5a22a368bd99bd546ad07aac61d5221d
   m_configObjects: {}
