@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
                 GameObject spawnedCar = Instantiate(npcCarPrefab, vector, Quaternion.identity);
                 numOfCarsSpawnedCounter++;
 
-                spawnedCar.GetComponent<NPCCarBehavior>().SetWaypoints(i);
+                spawnedCar.transform.GetChild(0).GetComponent<NPCCarBehavior>().SetWaypoints(i);
 
                 waypointOffsetCounter = 0;
                 currentWaypointOffset = UnityEngine.Random.Range(waypointsOffsetBetweenCarsMin, waypointsOffsetBetweenCarsMax + 1);

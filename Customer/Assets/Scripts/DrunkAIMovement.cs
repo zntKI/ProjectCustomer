@@ -297,13 +297,7 @@ public class DrunkAIMovement : MonoBehaviour
                 timeForReactionSecStopLightCounter += Time.deltaTime;
                 if (timeForReactionSecStopLightCounter >= timeForReactionSecStopLight)
                 {
-#if UNITY_EDITOR
-                    //EditorApplication.isPlaying = false;
                     GameManager.instance.Crash();
-#else
-        // For quitting the built application
-        GameManager.instance.Crash();
-#endif
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
