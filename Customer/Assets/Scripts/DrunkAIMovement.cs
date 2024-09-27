@@ -97,6 +97,8 @@ public class DrunkAIMovement : MonoBehaviour
     public static event Action OnStartCarPlaySound;
     public static event Action OnSwervePlaySound;
 
+    public static event Action OnTutorialEndSpawnNPCs;
+
     private void Awake()
     {
         SetState(MovementState.BeforeTakingOff);
@@ -372,6 +374,7 @@ public class DrunkAIMovement : MonoBehaviour
             {
                 case MovementState.TutorialManualSwerve:
                     DialogueNodeManager.instance.StartDialogue("TutorialEnd");
+                    OnTutorialEndSpawnNPCs?.Invoke();
                     break;
                 case MovementState.Swerving:
                     DialogueNodeManager.instance.StartDialogue("SwervingEnd");
@@ -515,6 +518,16 @@ public class DrunkAIMovement : MonoBehaviour
         }
 
         return Instantiate(prefab, spawnPosition, spawnRotation);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Road"))
+        {
+            return;
+        }
+
+        // TODO: include crash effect
     }
 }
 
