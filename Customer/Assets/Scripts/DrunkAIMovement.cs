@@ -519,6 +519,16 @@ public class DrunkAIMovement : MonoBehaviour
 
         return Instantiate(prefab, spawnPosition, spawnRotation);
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Road"))
+        {
+            return;
+        }
+
+        // TODO: include crash effect
+    }
 }
 
 
