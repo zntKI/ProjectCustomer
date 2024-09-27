@@ -525,10 +525,10 @@ public class DrunkAIMovement : MonoBehaviour
     bool isCrashCouroutineRunning = false;
     IEnumerator CrashTimerCoroutine()
     {
-        yield return new WaitForSeconds(4);
-
-        Debug.Log("crashed");
-       // GameManager.instance.Crash();
+        isCrashCouroutineRunning = true;
+        yield return new WaitForSeconds(4f);
+        isCrashCouroutineRunning = false;
+        GameManager.instance.Crash();
     }
 
 
@@ -543,10 +543,9 @@ public class DrunkAIMovement : MonoBehaviour
         }
         else
         {
-            if (!isCrashCouroutineRunning)
+            if (!isCrashCouroutineRunning && state != MovementState.BeforeTakingOff)
             {
                 StartCoroutine(CrashTimerCoroutine());
-                isCrashCouroutineRunning = true;
             }
         }
 
