@@ -32,7 +32,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     AudioClip carCrashShort;
 
-
     void Awake()
     {
         if (instance == null)
@@ -62,6 +61,7 @@ public class AudioManager : MonoBehaviour
 
     void PlayCrashSound()
     {
+        audioSourceBackground.Stop();
         audioSourceSFX.clip = carCrashShort;
         audioSourceSFX.Play();
     }
@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
         audioMixer.SetFloat(volumeParamName, value);
     }
 
-    public bool IsSFXOver()
+    public bool IsSFXOn()
     {
         return audioSourceSFX.isPlaying;
     }
