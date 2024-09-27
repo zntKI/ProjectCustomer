@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldDraw: 1
   id: 0
-  radius: 15
+  radius: 2
   color: {r: 1, g: 0, b: 0, a: 1}
   segments: 50
