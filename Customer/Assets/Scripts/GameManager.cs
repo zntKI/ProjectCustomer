@@ -23,7 +23,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject npcCarPrefab;
     [SerializeField]
-    float waypointsOffsetBetweenCars;
+    int numOfCarsToSpawn = 10;
+    [SerializeField]
+    int waypointsOffsetBetweenCarsMin;
+    [SerializeField]
+    int waypointsOffsetBetweenCarsMax;
     [SerializeField] bool spawnCars;
 
     [Header("Police")]
@@ -39,10 +43,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        DrunkAIMovement.OnTutorialEndSpawnNPCs += SpawnNPCs;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void SpawnNPCs()
     {
         if (!spawnCars)
         {
@@ -51,11 +56,21 @@ public class GameManager : MonoBehaviour
 
         var waypointParent = GameObject.FindGameObjectWithTag("WaypointParent");
 
+        int numOfCarsSpawnedCounter = 0;
+
         int waypointOffsetCounter = 0;
+        int currentWaypointOffset = UnityEngine.Random.Range(waypointsOffsetBetweenCarsMin, waypointsOffsetBetweenCarsMax + 1);
         for (int i = waypointParent.transform.childCount - 1; i >= 0; i--)
         {
-            if (waypointOffsetCounter % waypointsOffsetBetweenCars == 0)
+            waypointOffsetCounter++;
+
+            if (waypointOffsetCounter == currentWaypointOffset)
             {
+                if (numOfCarsSpawnedCounter >= numOfCarsToSpawn)
+                {
+                    break;
+                }
+
                 var waypoint = waypointParent.transform.GetChild(i);
 
                 // Spawn a car at the given waypoint
@@ -64,10 +79,13 @@ public class GameManager : MonoBehaviour
                 //Vector3 spawnPos = new Vector3(waypoint.position.x - waypoint.GetComponent<DebugDrawCircleRange>().Radius * 3, waypoint.position.y, waypoint.position.z);
                 //Quaternion carOrientation = waypoint.rotation * Quaternion.Euler(0, -90, 0); // Rotate it 180 degs on the y axis
                 GameObject spawnedCar = Instantiate(npcCarPrefab, vector, Quaternion.identity);
+                numOfCarsSpawnedCounter++;
 
                 spawnedCar.GetComponent<NPCCarBehavior>().SetWaypoints(i);
+
+                waypointOffsetCounter = 0;
+                currentWaypointOffset = UnityEngine.Random.Range(waypointsOffsetBetweenCarsMin, waypointsOffsetBetweenCarsMax + 1);
             }
-            waypointOffsetCounter++;
         }
     }
 
@@ -130,5 +148,10 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     { 
         SceneManager.LoadScene(2);
+    }
+
+    void OnDestroy()
+    {
+        DrunkAIMovement.OnTutorialEndSpawnNPCs -= SpawnNPCs;
     }
 }
